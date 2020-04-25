@@ -16,3 +16,12 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+// {
+//     "hosting": {
+//       "site": "technest-ecommerce-store",
+//       "public": "public",
+//       ...
+//     }
+//   }
