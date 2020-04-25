@@ -1,21 +1,30 @@
-import React from 'react';
-
+import React, { Component } from 'react';
 //React Router
-import { withRouter } from 'react-router-dom';
-
+import {
+    Switch,
+    Route,
+    withRouter
+} from "react-router-dom";
 //Casecading Stylesheet
 import './App.css';
 
-class App extends React.Component {
+//Screens
+import LandingPage from './Screens/LandingPage'
+import Login from './Screens/Login';
+
+//Components
+import Navbar from './Components/Navbar';
+
+class App extends Component {
 
     render() {
 
         return (
-            <div className="App">
-                <div className="App-header">
-                    <h3>Ecommerce Store</h3>
-                </div>
-            </div>
+            <React.Fragment>
+                <Switch>
+                    <Route path="/login" exact render={props => (<Login {...props} />)} />
+                </Switch>
+            </React.Fragment>
         )
     }
 }
