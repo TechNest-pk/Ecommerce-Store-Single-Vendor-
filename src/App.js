@@ -1,27 +1,23 @@
 import React from 'react';
 
-//Screens
-import LandingPage from './Screens/LandingPage';
+//React Router
+import { withRouter } from 'react-router-dom';
+
+//Casecading Stylesheet
+import './App.css';
 
 class App extends React.Component {
 
     render() {
 
         return (
-            <div>
-
+            <div className="App">
+                <div className="App-header">
+                    <h3>Ecommerce Store</h3>
+                </div>
             </div>
         )
     }
 }
 
-export default App;
-
-
-// {
-//     "hosting": {
-//       "site": "technest-ecommerce-store",
-//       "public": "public",
-//       ...
-//     }
-//   }
+export default withRouter(App);
