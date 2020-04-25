@@ -123,13 +123,15 @@ class Login extends React.Component {
         const { showPassword, passwordChar } = this.state;
 
         return (
-            <Container maxWidth="sm"
+            <Container
+                maxWidth="sm"
                 style={{
                     display: 'flex',
                     minHeight: '100vh',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    fontFamily: '"Noto Sans KR", sans-serif',
                 }}>
                 <CssBaseline />
                 <Card style={{ padding: 50, paddingLeft: 100, paddingRight: 100 }}>
@@ -214,15 +216,9 @@ class Login extends React.Component {
                     <div style={{ height: 5 }} />
                     <span>Not a Member yet? </span>
                     <Link to='/create-account' style={{
-                        textDecoration: 'none'
+                        textDecoration: 'none', color: 'blue',
                     }}>
-                        <span
-                            onClick={this.props.handleRegister}
-                            style={{
-                                color: 'blue',
-                                cursor: 'pointer',
-                            }}
-                        >Create Account</span>
+                        Create Account
                     </Link>
                     <div style={{ height: 15 }} />
                     <Grid container spacing={1}>
