@@ -1,41 +1,27 @@
-body{
+body {
   font-family: 'Noto Sans KR', sans-serif !important;
 }
-.App {
-  text-align: center;
+
+.MuiTypography-h1, .MuiTypography-h2, .MuiTypography-h3, .MuiTypography-h4, .MuiTypography-h5, .MuiTypography-h6, .MuiTypography-body1, .MuiButton-root {
+  font-family: 'Noto Sans KR', sans-serif !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button:focus {
+  /* outline: ; */
+  outline: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Input Fields */
+
+.navCustom .MuiOutlinedInput {
+  background-color: #efefef;
+  height: 46px;
+  width: auto;
+  margin-top: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.navCustom .MuiOutlinedInput-notchedOutline {
+  border: none !important;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* Input Fields */

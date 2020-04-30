@@ -2,6 +2,10 @@ import React from 'react';
 import { CssBaseline, Grid, Container, Typography, TextField, Button, Card, InputAdornment } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
+//Icons
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+
 //React Router
 import { Link } from 'react-router-dom';
 
@@ -14,6 +18,9 @@ import axios from 'axios';
 //Sweet Alerts
 import swal from 'sweetalert2';
 
+//Assets
+import cartImage from '../Assets/Images/cart.png';
+
 class Register extends React.Component {
 
     state = {
@@ -23,10 +30,8 @@ class Register extends React.Component {
         f_name: null,
         l_name: null,
         contact: null,
-        address: null,
-        city: null,
-        province: null,
-        msg1: 'You are registered Successfully',
+        passwordChar: 'password',
+        showPassword: false,
     }
 
     createUser = () => {
@@ -36,27 +41,19 @@ class Register extends React.Component {
             f_name,
             l_name,
             contact,
-            address,
-            city,
-            province,
-            msg1
         } = this.state;
 
         if (password === confirm_password) {
             firebase.auth().createUserWithEmailAndPassword(username, password)
                 .then(() => {
-                    let name = f_name + ' ' + l_name;
                     axios({
                         url: 'http://localhost:8000/user/add-user',
                         method: "POST",
                         data: {
                             email: username,
                             uid: firebase.auth().currentUser.uid,
-                            userName: name,
+                            userName: f_name + ' ' + l_name,
                             contact: contact,
-                            address: address,
-                            city: city,
-                            province: province,
                         },
                     }).then(response => {
                         //handle success
@@ -173,33 +170,27 @@ class Register extends React.Component {
             });
     }
 
-
-    handleTextFields = (e) => {
-
-        this.setState({
-            [e.target.name]: e.target.value
-        });
-    }
-
     render() {
         const { classes } = this.props;
+        const { passwordChar, showPassword } = this.state;
 
         return (
             <Container maxWidth="md">
                 <CssBaseline />
-                <div style={{ height: 30 }} />
                 <Card style={{ padding: 50 }}>
-                    <Typography component="h1" variant="h3" style={{ textAlign: 'center', marginBottom: 15 }}>
+                    {/* <div style={{backgroundColor: '#e7e7e7', boxShadow: 'black', padding: 10, width: '26%', borderRadius: 5 }}>
+                        <span style={{ color: '#087059', fontSize: 21 }} >Ecommerce </span><span style={{ color: '#4b5652', fontSize: 21 }} >Store</span>
+                    </div> */}
+                    <Typography variant="h5" style={{ marginBottom: 20 }}>
                         Create Account
                     </Typography>
-                    <Grid container spacing={1}>
-                        <Grid item xs={6}>
+                    <Grid container spacing={3}>
+                        <Grid item sm={7}>
                             <Grid container spacing={1}>
                                 <Grid item xs={6}>
                                     <TextField
-                                        variant="outlined"
                                         className={classes.textField}
-                                        required
+                                        variant="outlined"
                                         size="small"
                                         fullWidth
                                         id="f_name"
@@ -207,7 +198,7 @@ class Register extends React.Component {
                                         name="f_name"
                                         autoComplete="first name"
                                         autoFocus
-                                        onChange={this.handleTextFields}
+                                        onChange={e => { this.setState({ f_name: e.target.value }); }}
                                         InputProps={{
                                             classes: {
                                                 notchedOutline: classes.notchedOutline,
@@ -221,17 +212,12 @@ class Register extends React.Component {
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField
-                                        variant="outlined"
                                         className={classes.textField}
-                                        required
+                                        variant="outlined"
                                         size="small"
                                         fullWidth
-                                        id="l_name"
                                         label="Last Name"
-                                        name="l_name"
-                                        autoComplete="last name"
-                                        autoFocus
-                                        onChange={this.handleTextFields}
+                                        onChange={e => { this.setState({ l_name: e.target.value }); }}
                                         InputProps={{
                                             classes: {
                                                 notchedOutline: classes.notchedOutline,
@@ -245,15 +231,12 @@ class Register extends React.Component {
                                 </Grid>
                             </Grid>
                             <TextField
-                                variant="outlined"
                                 className={classes.textField}
-                                required
+                                variant="outlined"
                                 size="small"
                                 fullWidth
-                                name="contact"
                                 label="Contact Number"
-                                id="contact"
-                                onChange={this.handleTextFields}
+                                onChange={e => { this.setState({ contact: e.target.value }); }}
                                 InputProps={{
                                     classes: {
                                         notchedOutline: classes.notchedOutline,
@@ -265,17 +248,13 @@ class Register extends React.Component {
                                 }}
                             />
                             <TextField
-                                variant="outlined"
                                 className={classes.textField}
-                                required
+                                variant="outlined"
                                 size="small"
                                 fullWidth
                                 id="email"
                                 label="Email Address"
-                                name="username"
-                                autoComplete="email"
-                                autoFocus
-                                onChange={this.handleTextFields}
+                                onChange={e => { this.setState({ username: e.target.value }); }}
                                 InputProps={{
                                     classes: {
                                         notchedOutline: classes.notchedOutline,
@@ -288,18 +267,15 @@ class Register extends React.Component {
                                 helperText="You can use letters, numbers & periods"
                             />
                             <Grid container spacing={1}>
-                                <Grid item xs={6}>
+                                <Grid item xs={5}>
                                     <TextField
-                                        variant="outlined"
                                         className={classes.textField}
-                                        required
+                                        variant="outlined"
                                         size="small"
                                         fullWidth
-                                        name="password"
                                         label="Password"
-                                        type="password"
-                                        id="password"
-                                        onChange={this.handleTextFields}
+                                        type={passwordChar}
+                                        onChange={e => { this.setState({ password: e.target.value }); }}
                                         style={{ marginBottom: 0 }}
                                         InputProps={{
                                             classes: {
@@ -310,24 +286,18 @@ class Register extends React.Component {
                                         InputLabelProps={{
                                             style: { color: '#4b5652' },
                                         }}
-                                    // helperText="Your password should be 8 characters long"
-                                    // FormHelperTextProps={{
-                                    //     className: classes.helperText
-                                    //   }}
+
                                     />
                                 </Grid>
-                                <Grid item xs={6}>
+                                <Grid item xs={5}>
                                     <TextField
-                                        variant="outlined"
                                         className={classes.textField}
-                                        required
+                                        variant="outlined"
                                         size="small"
                                         fullWidth
-                                        name="confirm_password"
-                                        label="Confirm Password"
-                                        type="password"
-                                        id="c_password"
-                                        onChange={this.handleTextFields}
+                                        label="Confirm"
+                                        type={passwordChar}
+                                        onChange={e => { this.setState({ confirm_password: e.target.value }); }}
                                         style={{ marginBottom: 0 }}
                                         InputProps={{
                                             classes: {
@@ -341,10 +311,18 @@ class Register extends React.Component {
                                     // error="password"
                                     />
                                 </Grid>
+                                <Grid item xs={1}>
+                                    {
+                                        showPassword ?
+                                            <VisibilityIcon style={{ color: '#087059', cursor: 'pointer', marginTop: 8, float: 'right' }} onClick={() => { this.setState({ showPassword: false, passwordChar: 'password' }) }} />
+                                            :
+                                            <VisibilityOffIcon style={{ color: '#087059', cursor: 'pointer', marginTop: 8, float: 'right' }} onClick={() => { this.setState({ showPassword: true, passwordChar: 'text' }) }} />
+                                    }
+                                </Grid>
                             </Grid>
                             <span
                                 //  style={{ fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif', fontSize: '0.75rem', color: 'rgba(0, 0, 0, 0.54)', fontWeight: '400', lineHeight: '1.66', letterSpacing: '0.03333em', marginLeft: 16 }}
-                                className="MuiFormHelperText-root MuiFormHelperText-contained Mui-required MuiFormHelperText-marginDense">
+                                className="MuiFormHelperText-root MuiFormHelperText-contained Mu MuiFormHelperText-marginDense">
                                 Your password should be atleast 8 characters long
                             </span>
                             <div style={{ height: 15 }} />
@@ -353,30 +331,25 @@ class Register extends React.Component {
                                 variant="contained"
                                 style={{
                                     color: '#fff',
-                                    textTransform: 'capitalize',
+                                    // textTransform: 'capitalize',
                                     backgroundColor: '#087059',
                                     borderColor: 'transparent'
                                 }}
-                                onClick={this.createUser}
+                                // onClick={this.createUser}
                             >
-                                Signup
+                                Sign up
                             </Button>
-                            {/* <div style={{ height: 10 }} /> */}
-                            <div style={{ float: 'right', marginBottom: 12, marginTop: 8 }}>
-                                <span>Already have an account? </span>
-                                <Link to='/create-account' style={{
-                                    textDecoration: 'none'
-                                }}>
-                                    <span
-                                        onClick={this.props.handleRegister}
-                                        style={{
-                                            color: 'blue',
-                                            cursor: 'pointer',
-                                        }}
-                                    >Login</span>
-                                </Link>
-                            </div>
-                            {/* <div style={{ height: 15 }} /> */}
+                            <div style={{ height: 5 }} />
+                            <span
+                                className="MuiFormHelperText-root MuiFormHelperText-contained Mu MuiFormHelperText-marginDense">
+                                By clicking "SIGN UP" I agree to <Link to="/" style={{ color: 'blue', textDecoration: 'none' }}>Ecommerce Privacy Policy</Link>
+                            </span>
+                            <div style={{ height: 5 }} />
+                            <span
+                                className="MuiFormHelperText-root MuiFormHelperText-contained Mu MuiFormHelperText-marginDense">
+                                or continue with,
+                            </span>
+                            <div style={{ height: 5 }} />
                             <Grid container spacing={1}>
                                 <Grid item xs={6}>
                                     <Button
@@ -388,7 +361,7 @@ class Register extends React.Component {
                                             backgroundColor: '#DB4437',
                                             borderColor: 'transparent'
                                         }}
-                                        onClick={this.loginWithGoogle}
+                                        // onClick={this.loginWithGoogle}
                                     >
                                         Login with Google
                                     </Button>
@@ -403,13 +376,29 @@ class Register extends React.Component {
                                             backgroundColor: '#4267B2',
                                             borderColor: 'transparent'
                                         }}
-                                        onClick={this.loginWithFaceBook}
+                                        // onClick={this.loginWithFaceBook}
                                     >
                                         Login with Facebook
                                     </Button>
                                 </Grid>
                             </Grid>
                             <br />
+                            <div style={{ float: 'right' }}>
+                                <span>Already have an account? </span>
+                                <Link to='/login' style={{
+                                    textDecoration: 'none', color: 'blue',
+                                }}>
+                                    Login
+                                </Link>
+                            </div>
+                        </Grid>
+                        <Grid item sm={5}>
+                            <div className="create-account-img" style={{ padding: 10, width: '100%' }}>
+                                <img src={cartImage} alt="img" style={{ display: 'block', width: '70%', height: 'auto', marginLeft: '20%' }} />
+                            </div>
+                            <div style={{ padding: 10, textAlign: 'center' }}>
+                                <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                            </div>
                         </Grid>
                     </Grid>
                 </Card>

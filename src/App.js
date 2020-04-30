@@ -22,11 +22,13 @@ class App extends Component {
 
         return (
             <React.Fragment>
+                <Navbar />
+                <div style={{ height: 130 }} />
                 <Switch>
-                    <Route path="/login" exact render={props => (<Login {...props} />)} />
-                    <Route path="/create-account" exact render={props => (<Registeration {...props} />)} />
+                <Route path="/login" exact render={props => (<Login {...props} />)} />
+                <Route path="/create-account" exact render={props => (<Registeration {...props} />)} />
                 </Switch>
-            </React.Fragment>
+            </React.Fragment >
         )
     }
 }

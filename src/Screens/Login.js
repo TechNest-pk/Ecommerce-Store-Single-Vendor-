@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { CssBaseline, Grid, Container, Typography, TextField, Button, Card, InputAdornment } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-//Material Icons
+
+//Icons
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+
 //React Router
 import { Link } from 'react-router-dom';
+
 //Axios
 import axios from 'axios';
+
 //Configs
 import firebase from '../Config/Firebase';
 
@@ -126,16 +130,16 @@ class Login extends React.Component {
             <Container
                 maxWidth="sm"
                 style={{
-                    display: 'flex',
-                    minHeight: '100vh',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: '"Noto Sans KR", sans-serif',
+                    // display: 'flex',
+                    // minHeight: '100vh',
+                    // flexDirection: 'column',
+                    // alignItems: 'center',
+                    // justifyContent: 'center',
+                    // fontFamily: '"Noto Sans KR", sans-serif',
                 }}>
                 <CssBaseline />
                 <Card style={{ padding: 50, paddingLeft: 100, paddingRight: 100 }}>
-                    <Typography component="h1" variant="h3" style={{ textAlign: 'center', marginBottom: 15 }}>
+                    <Typography variant="h3" style={{ textAlign: 'center', marginBottom: 15 }}>
                         Login
                     </Typography>
                     <TextField
@@ -206,7 +210,7 @@ class Login extends React.Component {
                         variant="contained"
                         style={{
                             color: 'white',
-                            textTransform: 'capitalize',
+                            // textTransform: 'capitalize',
                             backgroundColor: '#008081'
                         }}
                         onClick={this.authUser}
