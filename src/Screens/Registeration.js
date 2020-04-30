@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { CssBaseline, Grid, Container, Typography, TextField, Button, Card, InputAdornment } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
@@ -21,7 +21,7 @@ import swal from 'sweetalert2';
 //Assets
 import cartImage from '../Assets/Images/cart.png';
 
-class Register extends React.Component {
+class Register extends Component {
 
     state = {
         username: null,

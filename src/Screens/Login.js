@@ -17,7 +17,7 @@ import axios from 'axios';
 //Configs
 import firebase from '../Config/Firebase';
 
-class Login extends React.Component {
+class Login extends Component {
 
     state = {
         username: null,

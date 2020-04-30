@@ -25,6 +25,7 @@ class App extends Component {
                 <Navbar />
                 <div style={{ height: 130 }} />
                 <Switch>
+                <Route path="/" exact render={props => (<LandingPage {...props} />)} />
                 <Route path="/login" exact render={props => (<Login {...props} />)} />
                 <Route path="/create-account" exact render={props => (<Registeration {...props} />)} />
                 </Switch>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid, Container, Typography, AppBar, Toolbar, Button, Menu, Paper, Divider, List, ListItem, ListItemIcon, ListItemText, FormControl, OutlinedInput, InputAdornment, Avatar, IconButton, Badge, TextField } from '@material-ui/core';
 
@@ -54,7 +54,7 @@ const styles = theme => ({
     },
     webAppBar: {
         display: 'none',
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('md')]: {
             display: 'block',
         }
     },
@@ -100,7 +100,7 @@ const styles = theme => ({
     },
 });
 
-class Appbar extends React.Component {
+class Appbar extends Component {
 
     state = {
         keyword: '',
