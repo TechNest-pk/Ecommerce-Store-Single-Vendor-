@@ -17,6 +17,9 @@ import axios from 'axios';
 //Configs
 import firebase from '../Config/Firebase';
 
+// Casecading Styleheet
+import '../App.css';
+
 class Login extends Component {
 
     state = {
@@ -211,7 +214,7 @@ class Login extends Component {
                         style={{
                             color: 'white',
                             // textTransform: 'capitalize',
-                            backgroundColor: '#008081'
+                            backgroundColor: '#087059'
                         }}
                         onClick={this.authUser}
                     >

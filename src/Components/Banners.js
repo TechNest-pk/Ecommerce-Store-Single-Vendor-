@@ -7,6 +7,9 @@ import { Carousel } from 'react-bootstrap';
 //React Router
 import { Link } from 'react-router-dom'
 
+// Casecading Styleheet
+import '../App.css';
+
 const useStyles = makeStyles(theme => ({
     card: {
         maxWidth: 345,

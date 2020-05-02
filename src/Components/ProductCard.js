@@ -3,13 +3,20 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Card, CardMedia, CardContent } from '@material-ui/core';
 
 //React Router
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
+// Casecading Styleheet
+import '../App.css';
 
 const useStyles = makeStyles(theme => ({
     card: {
         maxWidth: 345,
         height: 330,
         // maxHeight: 350,
+    },
+    cardListView: {
+        width: 198,
+        height: 300,
     },
     media: {
         height: 0,
@@ -37,7 +44,7 @@ export default function ProductCard(props) {
     return (
         <div>
 
-            <Card className={classes.card}>
+            <Card className={props.origin === 'Landing Page' ? classes.card : classes.cardListView}>
                 <Link to={`/product`} style={{ textDecoration: 'none', color: 'black' }} >
                     <div className={classes.cardImg}>
                         <CardMedia
@@ -51,7 +58,7 @@ export default function ProductCard(props) {
                         <Typography variant="h5" style={{ textAlign: 'center' }} color="textSecondary" component="h5">
                             {brandTitle}
                         </Typography>
-                        <Typography variant="h6" style={{ color: '#000', textAlign: 'center', marginBottom: '-12px' }} color="textSecondary" component="h6">
+                        <Typography variant="h6" style={{ color: 'orange', textAlign: 'center', marginBottom: '-12px' }} color="textSecondary" component="h6">
                             Rs. 5,000
                         </Typography>
                     </CardContent>

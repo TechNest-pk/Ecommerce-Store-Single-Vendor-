@@ -21,6 +21,9 @@ import swal from 'sweetalert2';
 //Assets
 import cartImage from '../Assets/Images/cart.png';
 
+// Casecading Styleheet
+import '../App.css';
+
 class Register extends Component {
 
     state = {
