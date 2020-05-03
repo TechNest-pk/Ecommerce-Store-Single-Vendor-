@@ -17,30 +17,15 @@ import NavigationList from './Components/Navs';
 import MyProfile from './Components/MyAccount';
 import EditProfile from './Components/EditProfile.js';
 
-const style = {
-    profileNavHeading: {
-        listStyle: 'none',
-        textDecoration: 'none',
-        color: '#008081',
-        fontSize: '21px',
-        marginBottom: '20px',
-    },
-    profileNav: {
-        listStyle: 'none',
-        textDecoration: 'none',
-        color: '#474747',
-        fontSize: '17px',
-        margin: '5px',
-        cursor: 'pointer'
-    }
-}
-
-
 class App extends React.Component {
 
     state = {
         showProfile: true,
         showEditProfile: false,
+        showChangePassword: false,
+        showOrders: false,
+        showReviews: false,
+        path: 'profile',
         data: {},
     }
 
@@ -98,72 +83,99 @@ class App extends React.Component {
         }
     }
 
-    renderProfileNavs = () => {
+    componentDidUpdate(prevProps) {
+        const path = this.props.match.params.path;
 
-        return (
-            <div>
-                <ul>
-                    <li style={style.profileNavHeading}><Link to='/user' style={style.profileNavHeading}>Manage My Account</Link>
-                        <ul>
-                            <li style={style.profileNav}><span onClick={this.renderMyProfile}>My Profile</span></li>
-                            <li style={style.profileNav}><span onClick={this.renderEditProfile}>Edit Profile</span></li>
-                            {/* <li style={style.profileNav}><span>My Cancellation  </span></li> */}
-                        </ul>
-                    </li>
-                    <li style={style.profileNavHeading}><Link to='/my-orders' style={style.profileNavHeading}>My Orders</Link></li>
-                    {/* <li style={style.profileNavHeading}><span>My Reviews</span></li> */}
-                    <li style={style.profileNavHeading}><span>Help</span></li>
-                </ul>
-            </div>
-        )
+        console.log(path)
+
+        if (prevProps !== this.props) {
+            if (path === 'profile') {
+                this.setState({
+                    showProfile: true,
+                    showEditProfile: false,
+                    showChangePassword: false,
+                    showOrders: false,
+                    showReviews: false,
+                    path: path
+                });
+            }
+            else if (path === 'change-password') {
+                this.setState({
+                    showChangePassword: true,
+                    showEditProfile: false,
+                    showProfile: false,
+                    showOrders: false,
+                    showReviews: false,
+                    path: path
+                });
+            }
+            else if (path === 'orders') {
+                this.setState({
+                    showOrders: true,
+                    showEditProfile: false,
+                    showChangePassword: false,
+                    showProfile: false,
+                    showReviews: false,
+                    path: path
+                });
+            }
+            else if (path === 'reviews') {
+                this.setState({
+                    showReviews: true,
+                    showEditProfile: false,
+                    showChangePassword: false,
+                    showProfile: false,
+                    showOrders: false,
+                    path: path
+                });
+            }
+        }
     }
 
-    renderMyProfile = () => {
+    // renderMyProfile = () => {
 
-        this.setState({
-            showEditProfile: false,
-            showOrders: false,
-            showProfile: true,
-        })
-    }
+    //     this.setState({
+    //         showProfile: true,
+    //         showEditProfile: false,
+    //         showChangePassword: false,
+    //         showOrders: false,
+    //         showReviews: false,
+    //     })
+    // }
 
     renderEditProfile = () => {
 
         this.setState({
             showEditProfile: true,
-            showOrders: false,
             showProfile: false,
+            showChangePassword: false,
+            showOrders: false,
+            showReviews: false,
         })
     }
 
     render() {
 
-        const { showProfile, showEditProfile, data } = this.state;
-        console.log(data.fileImagePath);
+        const { showProfile, showEditProfile, path, data } = this.state;
 
         return (
 
             <React.Fragment>
                 <Container maxWidth="lg">
                     <Grid container spacing={3}>
-
                         <Grid item lg={3} md={3} sm={6} xs={12}>
-                            <NavigationList renderProfile={this.renderMyProfile} />
+                            <NavigationList path={path} />
                         </Grid>
-
-                        {
-                            showProfile &&
-                            <Grid item lg={9} md={9} sm={6} xs={12}>
+                        <Grid item lg={9} md={9} sm={6} xs={12}>
+                            {
+                                showProfile &&
                                 <MyProfile user={data} renderEditProfile={this.renderEditProfile} />
-                            </Grid>
-                        }
-
-                        {
-                            showEditProfile &&
-                            <Grid item lg={9} md={9} sm={6} xs={12}>
+                            }
+                            {
+                                showEditProfile &&
                                 <EditProfile user={data} />
-                            </Grid>
-                        }
+                            }
+                        </Grid>
 
                     </Grid>
                     {/* <img src={`http://localhost:8000/${data.fileImagePath}`} /> */}

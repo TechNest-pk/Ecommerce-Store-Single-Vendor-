@@ -32,7 +32,8 @@ class App extends Component {
                 <Route path="/" exact render={props => (<LandingPage {...props} />)} />
                 <Route path="/login" exact render={props => (<Login {...props} />)} />
                 <Route path="/create-account" exact render={props => (<Registeration {...props} />)} />
-                <Route path="/user" exact render={props => (<UserAccount {...props} />)} />
+                <Route path="/user/:path" exact render={props => (<UserAccount {...props} />)} />
+                <Route path="/user/:path/:userId" exact render={props => (<UserAccount {...props} />)} />
                 <Route path="/product" exact render={props => (<ProductDetails {...props} />)} />
                 </Switch>
             </React.Fragment >
