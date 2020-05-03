@@ -40,7 +40,6 @@ const prodArr = [
 class LandingPage extends Component {
 
     render() {
-        console.log(s6)
 
         return (
             <Container maxWidth="lg">

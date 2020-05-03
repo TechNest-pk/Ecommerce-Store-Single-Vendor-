@@ -255,7 +255,6 @@ class Register extends Component {
                                 variant="outlined"
                                 size="small"
                                 fullWidth
-                                id="email"
                                 label="Email Address"
                                 onChange={e => { this.setState({ username: e.target.value }); }}
                                 InputProps={{

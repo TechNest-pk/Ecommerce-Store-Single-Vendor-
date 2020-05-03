@@ -1,7 +1,7 @@
 body {
   font-family: 'Noto Sans KR', sans-serif !important;
-  background-color: #efefef;
-  color: #000
+  background-color: #efefef !important;
+  color: #000 !important;
 }
 
 .MuiTypography-h1, .MuiTypography-h2, .MuiTypography-h3, .MuiTypography-h4, .MuiTypography-h5, .MuiTypography-h6, .MuiTypography-body2, .MuiTypography-body1, .MuiButton-root {
