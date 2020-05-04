@@ -34,6 +34,9 @@ class App extends React.Component {
     componentDidMount() {
 
         const userID = this.props.match.params.userId;
+       
+        //Check for url path
+        this.checkPath();
 
         if (userID) {
             console.log(userID, 'if chal raha hai')
@@ -86,64 +89,57 @@ class App extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        const path = this.props.match.params.path;
-
-        console.log(path)
 
         if (prevProps !== this.props) {
-            if (path === 'profile') {
-                this.setState({
-                    showProfile: true,
-                    showEditProfile: false,
-                    showChangePassword: false,
-                    showOrders: false,
-                    showReviews: false,
-                    path: path
-                });
-            }
-            else if (path === 'change-password') {
-                this.setState({
-                    showChangePassword: true,
-                    showEditProfile: false,
-                    showProfile: false,
-                    showOrders: false,
-                    showReviews: false,
-                    path: path
-                });
-            }
-            else if (path === 'orders') {
-                this.setState({
-                    showOrders: true,
-                    showEditProfile: false,
-                    showChangePassword: false,
-                    showProfile: false,
-                    showReviews: false,
-                    path: path
-                });
-            }
-            else if (path === 'reviews') {
-                this.setState({
-                    showReviews: true,
-                    showEditProfile: false,
-                    showChangePassword: false,
-                    showProfile: false,
-                    showOrders: false,
-                    path: path
-                });
-            }
+            this.checkPath();
         }
     }
 
-    // renderMyProfile = () => {
+    checkPath = () => {
 
-    //     this.setState({
-    //         showProfile: true,
-    //         showEditProfile: false,
-    //         showChangePassword: false,
-    //         showOrders: false,
-    //         showReviews: false,
-    //     })
-    // }
+        const path = this.props.match.params.path;
+
+        if (path === 'profile') {
+            this.setState({
+                showProfile: true,
+                showEditProfile: false,
+                showChangePassword: false,
+                showOrders: false,
+                showReviews: false,
+                path: path
+            });
+        }
+        else if (path === 'change-password') {
+            this.setState({
+                showChangePassword: true,
+                showEditProfile: false,
+                showProfile: false,
+                showOrders: false,
+                showReviews: false,
+                path: path
+            });
+        }
+        else if (path === 'orders') {
+            this.setState({
+                showOrders: true,
+                showEditProfile: false,
+                showChangePassword: false,
+                showProfile: false,
+                showReviews: false,
+                path: path
+            });
+        }
+        else if (path === 'reviews') {
+            this.setState({
+                showReviews: true,
+                showEditProfile: false,
+                showChangePassword: false,
+                showProfile: false,
+                showOrders: false,
+                path: path
+            });
+        }
+    }
 
     renderEditProfile = () => {
 
@@ -158,7 +154,7 @@ class App extends React.Component {
 
     render() {
 
-        const { showProfile, showEditProfile, path, data } = this.state;
+        const { showProfile, showEditProfile, showOrders, showReviews, path, data } = this.state;
 
         return (
 
@@ -178,6 +174,10 @@ class App extends React.Component {
                             {
                                 showEditProfile &&
                                 <EditProfile user={data} />
+                            }
+                            {
+                                showOrders &&
+                                <MyOrders user={data} />
                             }
                         </Grid>
 
