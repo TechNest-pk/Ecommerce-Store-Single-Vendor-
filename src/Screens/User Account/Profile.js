@@ -14,8 +14,10 @@ import { Container, Grid, Card, Typography, Button } from '@material-ui/core';
 
 //Components
 import NavigationList from './Components/Navs';
-import MyProfile from './Components/MyAccount';
+import UserDp from './Components/UserDp';
+import MyProfile from './Components/MyProfile';
 import EditProfile from './Components/EditProfile.js';
+import MyOrders from './Components/MyOrders';
 
 class App extends React.Component {
 
@@ -163,10 +165,12 @@ class App extends React.Component {
             <React.Fragment>
                 <Container maxWidth="lg">
                     <Grid container spacing={3}>
-                        <Grid item lg={3} md={3} sm={6} xs={12}>
+                        <Grid item lg={3} md={3} sm={4} xs={12}>
+                            <UserDp />
+                            <div style={{ height: 10 }} />
                             <NavigationList path={path} />
                         </Grid>
-                        <Grid item lg={9} md={9} sm={6} xs={12}>
+                        <Grid item lg={9} md={9} sm={8} xs={12}>
                             {
                                 showProfile &&
                                 <MyProfile user={data} renderEditProfile={this.renderEditProfile} />
