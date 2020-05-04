@@ -11,10 +11,7 @@ export default function Profile(props) {
 
     return (
         <div>
-            <Card style={{
-                padding: 40,
-                marginTop: 10,
-            }}>
+            <Card className={classes.containerCard}>
                 <Grid container spacing={1}>
                     <Grid item lg={4} md={4} sm={6} xs={12}>
                         <InputLabel style={{ color: '#666666', fontWeight: 'bold' }}>Name</InputLabel>
@@ -64,6 +61,14 @@ export default function Profile(props) {
 }
 
 const styles = makeStyles(theme => ({
+    containerCard: {
+        padding: 40,
+        marginTop: 10,
+        height: 500,
+        [theme.breakpoints.down('sm')]: {
+            height: 'auto',
+        },
+    },
     btn: {
         color: '#666666',
         backgroundColor: 'transparent',

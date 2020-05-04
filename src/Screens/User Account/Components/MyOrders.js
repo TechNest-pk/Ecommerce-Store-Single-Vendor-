@@ -13,6 +13,9 @@ import { Table } from 'react-bootstrap';
 //Icons
 import DoneIcon from '@material-ui/icons/Done';
 
+//Cascading Stylesheet
+import '../../../App.css'
+
 //Moment
 // import moment from 'moment';
 
@@ -52,10 +55,7 @@ export default function Orders(props) {
     const classes = styles();
 
     return (
-        <Card style={{
-            padding: 40,
-            marginTop: 10,
-        }}>
+        <Card className={classes.containerCard}>
             <div className={classes.root}>
                 {/* {orders.length > 0
                     ?
@@ -70,7 +70,7 @@ export default function Orders(props) {
                             Open receipt
                             </Button>
                         <br />
-                        <Typography style={{ fontSize: 13 }} variant='caption' color="textSecondary" gutterBottom>
+                        <Typography style={{ fontSize: 13, fontFamily: '"Noto Sans KR", sans-serif', }} variant='caption' color="textSecondary" gutterBottom>
                             <strong>Placed on sept 29, 1996</strong>
                         </Typography>
                     </Typography>
@@ -90,7 +90,7 @@ export default function Orders(props) {
                         </Grid>
                         <Grid item md={1}>
                             <Typography variant='caption' style={{ width: '100%' }}>
-                                <Typography style={{ fontSize: 15 }} variant='caption' color="textSecondary" gutterBottom>
+                                <Typography style={{ fontSize: 15, fontFamily: '"Noto Sans KR", sans-serif', }} variant='caption' color="textSecondary" gutterBottom>
                                     Qty:
                                         </Typography> <strong style={{ fontSize: 15 }}>2</strong>
                             </Typography>
@@ -100,7 +100,7 @@ export default function Orders(props) {
                             <Chip style={{ height: 20 }} label="Delivered" />
                         </Grid>
                         <Grid item md={3}>
-                            <Typography style={{ fontSize: 13 }} variant='caption' color="textSecondary" gutterBottom>
+                            <Typography style={{ fontSize: 13, fontFamily: '"Noto Sans KR", sans-serif', }} variant='caption' color="textSecondary" gutterBottom>
                                 <strong>Delivered on Spet 29, 1996</strong>
                             </Typography>
                         </Grid>
@@ -133,6 +133,14 @@ export default function Orders(props) {
 }
 
 const styles = makeStyles(theme => ({
+    containerCard: {
+        padding: 40,
+        marginTop: 10,
+        height: 500,
+        [theme.breakpoints.down('sm')]: {
+            height: 'auto',
+        },
+    },
     btn: {
         color: '#666666',
         backgroundColor: 'transparent',
@@ -153,10 +161,4 @@ const styles = makeStyles(theme => ({
         }
 
     },
-    heightforWeb: {
-        height: 10,
-        [theme.breakpoints.up('md')]: {
-            height: 200,
-        }
-    }
 }));

@@ -101,14 +101,11 @@ class App extends React.Component {
             <React.Fragment>
 
                 <div>
-                    <Card style={{
-                        padding: 40,
-                        marginTop: 10,
-                    }}>
+                    <Card className={classes.containerCard}>
                         <Grid container spacing={1}>
 
                             <Grid item lg={4} md={4} sm={6} xs={12}>
-                            <InputLabel style={{ color: '#666666', fontWeight: 'bold' }}>Name</InputLabel>
+                                <InputLabel style={{ color: '#666666', fontWeight: 'bold' }}>Name</InputLabel>
                                 <TextField
                                     className={classes.textField}
                                     variant="outlined"
@@ -126,7 +123,7 @@ class App extends React.Component {
                                 />
                             </Grid>
                             <Grid item lg={4} md={4} sm={6} xs={12}>
-                            <InputLabel style={{ color: '#666666', fontWeight: 'bold' }}>Email Address</InputLabel>
+                                <InputLabel style={{ color: '#666666', fontWeight: 'bold' }}>Email Address</InputLabel>
                                 <Typography variant="h6" color="textSecondary" className={classes.email} component="h5">
                                     {email} hafiz.talhakh@gmail.com
                                 </Typography>
@@ -170,7 +167,7 @@ class App extends React.Component {
                                 </form>
                             </Grid>
                             <Grid item lg={4} md={4} sm={6} xs={12}>
-                            <InputLabel style={{ color: '#666666', fontWeight: 'bold' }}>Gender</InputLabel>
+                                <InputLabel style={{ color: '#666666', fontWeight: 'bold' }}>Gender</InputLabel>
                                 <FormControl component="fieldset">
                                     <RadioGroup aria-label="gender" name="gender" defaultValue="Male" value={gender} onChange={this.handleChange}>
                                         <FormControlLabel value="Male" control={<Radio color="primary" />} label="Male" />
@@ -199,6 +196,14 @@ class App extends React.Component {
 }
 
 const styles = theme => ({
+    containerCard: {
+        padding: 40,
+        marginTop: 10,
+        height: 500,
+        [theme.breakpoints.down('sm')]: {
+            height: 'auto',
+        },
+    },
     textField: {
         backgroundColor: 'white',
         color: 'black',
