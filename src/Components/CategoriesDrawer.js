@@ -15,7 +15,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { FaRegUserCircle, FaMobileAlt, FaTshirt } from 'react-icons/fa';
 import { MdReceipt, MdRateReview } from 'react-icons/md';
 import { GiHelp, GiBallerinaShoes } from 'react-icons/gi';
-import { FiGift, FiSettings, FiShoppingCart } from 'react-icons/fi';
+import { FiGift, } from 'react-icons/fi';
 
 // Casecading Styleheet
 import '../App.css';
@@ -50,7 +50,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function FullScreenDialog(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [isUserLoggedIn, setIsUserLoggedIn] = React.useState(true);
+    const [showCategories, setShowCategories] = React.useState(false);
     const [keyword, setKeyword] = React.useState(null);
 
     const handleClickOpen = () => {
@@ -68,6 +68,10 @@ function FullScreenDialog(props) {
                 history.push(`/s/${value}`);
             }
         }
+    }
+
+    const handleShowCategories = () => {
+        setShowCategories(true);
     }
 
     return (
@@ -95,7 +99,7 @@ function FullScreenDialog(props) {
                         </IconButton>
                     </Toolbar>
                 </AppBar>
-                <React.Fragment>
+                <div>
                     <FormControl variant="outlined" className="navCustom" style={{
                         width: '80%',
                         maxWidth: '100%',
@@ -151,88 +155,65 @@ function FullScreenDialog(props) {
                         <ListItem style={{ padding: 0, paddingRight: 10 }}>
                             <ListItemText
                                 style={{ margin: 0, }}
-                                primary={<span onClick={() => { props.history.push('/categories'); handleClose(); }} style={{ float: 'right', display: 'block', fontSize: 14, color: '#087059' }}>See all Categories</span>}
+                                primary={<span onClick={} style={{ float: 'right', display: 'block', fontSize: 14, color: '#087059' }}>See all Categories</span>}
                             />
                         </ListItem>
                     </List>
                     <Divider />
-                    {isUserLoggedIn &&
-                        <List component="nav">
-                            <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FaRegUserCircle style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="My Account" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <MdReceipt style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="My Orders" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FiShoppingCart style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="My Cart" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <MdRateReview style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="My Reviews" />
-                            </ListItem>
-                        </List>
-                    }
+                    <List component="nav">
+                        <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
+                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
+                                <FaRegUserCircle style={{ fontSize: 21, color: 'inherit' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="My Account" />
+                        </ListItem>
+                        <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
+                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
+                                <MdReceipt style={{ fontSize: 21, color: 'inherit' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="My Orders" />
+                        </ListItem>
+                        <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
+                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
+                                <FaRegUserCircle style={{ fontSize: 21, color: 'inherit' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="My Cart" />
+                        </ListItem>
+                        <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
+                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
+                                <MdRateReview style={{ fontSize: 21, color: 'inherit' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="My Reviews" />
+                        </ListItem>
+                    </List>
                     <Divider />
                     <List
                         component="nav"
                         subheader={
                             <ListSubheader component="div" style={{ position: 'relative', top: 0, zIndex: 1, }}>
-                                Help & Settings
+                                Settings
                         </ListSubheader>
                         }>
-                        {isUserLoggedIn &&
-                            <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FiSettings style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="Account Settings" />
-                            </ListItem>
-                        }
                         <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
                             <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <GiHelp style={{ fontSize: 21, color: 'inherit' }} />
+                                <FaRegUserCircle style={{ fontSize: 21, color: 'inherit' }} />
                             </ListItemIcon>
-                            <ListItemText primary="Help" />
+                            <ListItemText primary="Account Settings" />
                         </ListItem>
-                        {isUserLoggedIn ?
-                            <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <ExitToAppIcon style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="Logout" />
-                            </ListItem>
-                            :
-                            <div
-                                style={{
-                                    justifyContent: 'center',
-                                    alignContent: 'center',
-                                    width: '100%',
-                                    display: 'inline-flex'
-                                }}>
-                                <Button
-                                    variant="contained"
-                                    style={{
-                                        color: '#fff',
-                                        backgroundColor: '#087059',
-                                        width: '80%',
-                                        marginTop: 50
-                                    }}>Login</Button>
-                            </div>
-                        }
+                        <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
+                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
+                                <MdReceipt style={{ fontSize: 21, color: 'inherit' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="My Orders" />
+                        </ListItem>
+                        <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
+                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
+                                <ExitToAppIcon style={{ fontSize: 21, color: 'inherit' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="Logout" />
+                        </ListItem>
                     </List>
-                </React.Fragment>
+                </div>
             </Dialog>
         </React.Fragment>
     );

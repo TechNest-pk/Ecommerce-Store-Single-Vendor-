@@ -19,6 +19,7 @@ import UserAccount from './Screens/User Account/Profile';
 
 //Components
 import Navbar from './Components/Navbar';
+import CategoriesDrawer from './Components/CategoriesDrawer';
 
 class App extends Component {
 
@@ -34,6 +35,7 @@ class App extends Component {
                 <Route path="/create-account" exact render={props => (<Registeration {...props} />)} />
                 <Route path="/user/:path" exact render={props => (<UserAccount {...props} />)} />
                 <Route path="/user/:path/:userId" exact render={props => (<UserAccount {...props} />)} />
+                <Route path="/categories" exact render={props => (<CategoriesDrawer {...props} />)} />
                 <Route path="/product" exact render={props => (<ProductDetails {...props} />)} />
                 </Switch>
             </React.Fragment >
