@@ -11,7 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { FiGift, } from 'react-icons/fi';
+import { FiGift, FiShoppingCart } from 'react-icons/fi';
 import { FaMobileAlt, FaTshirt, FaFonticonsFi } from 'react-icons/fa';
 import { GiBallerinaShoes } from 'react-icons/gi';
 import { MdReceipt, MdRateReview } from 'react-icons/md';
@@ -149,7 +149,7 @@ class Appbar extends Component {
                 <Link to='/cart'>
                     <IconButton className={classes.iconButton} >
                         <StyledBadge1 badgeContent={cartQuantity} color="primary">
-                            <ShoppingCartIcon style={{ color: '#087059' }} />
+                            <FiShoppingCart style={{ color: '#087059' }} />
                         </StyledBadge1>
                     </IconButton>
                 </Link>
@@ -211,7 +211,7 @@ class Appbar extends Component {
                         <Link to='/cart' style={{ textDecoration: 'none', color: 'black' }}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <ShoppingCartIcon />
+                                    <FiShoppingCart />
                                 </ListItemIcon>
                                 <ListItemText primary="My Cart" />
                             </ListItem>

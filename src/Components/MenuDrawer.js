@@ -50,7 +50,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function FullScreenDialog(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [isUserLoggedIn, setIsUserLoggedIn] = React.useState(false);
+    const [isUserLoggedIn, setIsUserLoggedIn] = React.useState(true);
     const [keyword, setKeyword] = React.useState(null);
 
     const handleClickOpen = () => {
