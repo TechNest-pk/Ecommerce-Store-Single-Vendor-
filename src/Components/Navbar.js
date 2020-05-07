@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import { Grid, Container, Typography, AppBar, Toolbar, Button, Menu, Paper, Divider, List, ListItem, ListItemIcon, ListItemText, FormControl, OutlinedInput, InputAdornment, Avatar, IconButton, Badge, TextField } from '@material-ui/core';
-
-//Icons
-import SearchIcon from '@material-ui/icons/Search';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { FiGift, } from 'react-icons/fi';
-import { FaMobileAlt, FaTshirt, FaFonticonsFi } from 'react-icons/fa';
-import { GiBallerinaShoes } from 'react-icons/gi';
 
 //React Router
 import { Link, withRouter } from 'react-router-dom';
 
+//Material UI
+import { Grid, Container, Typography, AppBar, Toolbar, Button, Menu, Paper, Divider, List, ListItem, ListItemIcon, ListItemText, FormControl, OutlinedInput, InputAdornment, Avatar, IconButton, Badge, TextField } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+
+//Icons
+import SearchIcon from '@material-ui/icons/Search';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { FiGift, } from 'react-icons/fi';
+import { FaMobileAlt, FaTshirt, FaFonticonsFi } from 'react-icons/fa';
+import { GiBallerinaShoes } from 'react-icons/gi';
+import { MdReceipt, MdRateReview } from 'react-icons/md';
+
 // Components
 import CategoriesButton from './CategoriesDropDown';
+import DrawerMenu from '../Components/MenuDrawer';
 
 //Sweetalert
 import Swal from 'sweetalert2';
@@ -58,18 +61,25 @@ const styles = theme => ({
             display: 'block',
         }
     },
-    searchBarWeb: {
-        display: 'none',
-        [theme.breakpoints.up('md')]: {
-            display: 'block',
-        }
-    },
-    searchBarMobile: {
+    mobileAppBar: {
         display: 'block',
         [theme.breakpoints.up('md')]: {
             display: 'none',
-        },
+
+        }
     },
+    // searchBarWeb: {
+    //     display: 'none',
+    //     [theme.breakpoints.up('md')]: {
+    //         display: 'block',
+    //     }
+    // },
+    // searchBarMobile: {
+    //     display: 'block',
+    //     [theme.breakpoints.up('md')]: {
+    //         display: 'none',
+    //     },
+    // },
     categoriesButton: {
         margin: 5,
         color: 'white',
@@ -192,7 +202,7 @@ class Appbar extends Component {
                         <Link to='/my-orders' style={{ textDecoration: 'none', color: 'black' }}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <FeaturedPlayListIcon />
+                                    <MdReceipt style={{ fontSize: 21, color: 'inherit' }} />
                                 </ListItemIcon>
                                 <ListItemText primary="My Orders" />
                             </ListItem>
@@ -338,6 +348,28 @@ class Appbar extends Component {
                             </div>
                         </Toolbar>
                         {this.renderNavigationList()}
+
+                    </Container>
+                </AppBar>
+                <AppBar
+                    className={classes.mobileAppBar}
+                    style={{ backgroundColor: '#fff', fontFamily: '"Noto Sans KR", sans-serif', }}
+                    // color='default'
+                    position="fixed">
+                    <Container maxWidth="md">
+                        <DrawerMenu />
+                        <Typography
+                            variant="h6"
+                            style={{
+                                textAlign: 'center',
+                                verticalAlign: 'middle',
+                                display: 'inline-block',
+                                width: '80%',
+                                color: '#087059',
+                                fontWeight: "bold",
+                            }}>
+                            Ecommerce Store
+                        </Typography>
                     </Container>
                 </AppBar>
 
