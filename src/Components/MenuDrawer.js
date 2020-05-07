@@ -50,7 +50,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function FullScreenDialog(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [showCategories, setShowCategories] = React.useState(false);
+    const [isUserLoggedIn, setIsUserLoggedIn] = React.useState(false);
     const [keyword, setKeyword] = React.useState(null);
 
     const handleClickOpen = () => {
@@ -96,67 +96,67 @@ function FullScreenDialog(props) {
                     </Toolbar>
                 </AppBar>
                 <React.Fragment>
-                    <div>
-                        <FormControl variant="outlined" className="navCustom" style={{
-                            width: '80%',
-                            maxWidth: '100%',
-                            margin: '0px auto 0px',
-                            marginTop: 10
-                        }}>
-                            <OutlinedInput
-                                id="outlined-adornment-amount"
-                                className="MuiOutlinedInput MuiOutlinedInput-notchedOutline"
-                                placeholder="Search.."
-                                value={keyword}
-                                onChange={e => setKeyword(e.target.value)}
-                                onKeyPress={e => handleKeyPress(e, e.target.value)}
-                                endAdornment={
-                                    <InputAdornment position="end">
-                                        <Link style={{ textDecoration: 'none', color: '#087059' }} to={`/s/${keyword}`}><SearchIcon style={{ marginTop: 4 }} /></Link>
-                                    </InputAdornment>
-                                }
-                            />
-                        </FormControl>
-                        <div style={{ height: 10 }} />
-                        <List
-                            component="nav"
-                            subheader={
-                                <ListSubheader component="div" style={{ position: 'relative' }}>
-                                    Popular Searches
+                    <FormControl variant="outlined" className="navCustom" style={{
+                        width: '80%',
+                        maxWidth: '100%',
+                        margin: '0px auto 0px',
+                        marginTop: 10
+                    }}>
+                        <OutlinedInput
+                            id="outlined-adornment-amount"
+                            className="MuiOutlinedInput MuiOutlinedInput-notchedOutline"
+                            placeholder="Search.."
+                            value={keyword}
+                            onChange={e => setKeyword(e.target.value)}
+                            onKeyPress={e => handleKeyPress(e, e.target.value)}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <Link style={{ textDecoration: 'none', color: '#087059' }} to={`/s/${keyword}`}><SearchIcon style={{ marginTop: 4 }} /></Link>
+                                </InputAdornment>
+                            }
+                        />
+                    </FormControl>
+                    <div style={{ height: 10 }} />
+                    <List
+                        component="nav"
+                        subheader={
+                            <ListSubheader component="div" style={{ position: 'relative' }}>
+                                Popular Searches
                         </ListSubheader>
-                            }>
-                            <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FaMobileAlt style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="SmartPhones" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FaTshirt style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="Clothes" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <GiBallerinaShoes style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="Shoes" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FiGift style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="Discounts" />
-                            </ListItem>
-                            <ListItem style={{ padding: 0, paddingRight: 10 }}>
-                                <ListItemText
-                                    style={{ margin: 0, }}
-                                    primary={<span onClick={} style={{ float: 'right', display: 'block', fontSize: 14, color: '#087059' }}>See all Categories</span>}
-                                />
-                            </ListItem>
-                        </List>
-                        <Divider />
+                        }>
+                        <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
+                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
+                                <FaMobileAlt style={{ fontSize: 21, color: 'inherit' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="SmartPhones" />
+                        </ListItem>
+                        <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
+                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
+                                <FaTshirt style={{ fontSize: 21, color: 'inherit' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="Clothes" />
+                        </ListItem>
+                        <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
+                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
+                                <GiBallerinaShoes style={{ fontSize: 21, color: 'inherit' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="Shoes" />
+                        </ListItem>
+                        <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
+                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
+                                <FiGift style={{ fontSize: 21, color: 'inherit' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="Discounts" />
+                        </ListItem>
+                        <ListItem style={{ padding: 0, paddingRight: 10 }}>
+                            <ListItemText
+                                style={{ margin: 0, }}
+                                primary={<span onClick={() => { props.history.push('/categories') }} style={{ float: 'right', display: 'block', fontSize: 14, color: '#087059' }}>See all Categories</span>}
+                            />
+                        </ListItem>
+                    </List>
+                    <Divider />
+                    {isUserLoggedIn &&
                         <List component="nav">
                             <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
                                 <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
@@ -183,34 +183,55 @@ function FullScreenDialog(props) {
                                 <ListItemText primary="My Reviews" />
                             </ListItem>
                         </List>
-                        <Divider />
-                        <List
-                            component="nav"
-                            subheader={
-                                <ListSubheader component="div" style={{ position: 'relative', top: 0, zIndex: 1, }}>
-                                    Settings
+                    }
+                    <Divider />
+                    <List
+                        component="nav"
+                        subheader={
+                            <ListSubheader component="div" style={{ position: 'relative', top: 0, zIndex: 1, }}>
+                                Help & Settings
                         </ListSubheader>
-                            }>
+                        }>
+                        {isUserLoggedIn &&
                             <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
                                 <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
                                     <FaRegUserCircle style={{ fontSize: 21, color: 'inherit' }} />
                                 </ListItemIcon>
                                 <ListItemText primary="Account Settings" />
                             </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <MdReceipt style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="My Orders" />
-                            </ListItem>
+                        }
+                        <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
+                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
+                                <MdReceipt style={{ fontSize: 21, color: 'inherit' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="My Orders" />
+                        </ListItem>
+                        {isUserLoggedIn ?
                             <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
                                 <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
                                     <ExitToAppIcon style={{ fontSize: 21, color: 'inherit' }} />
                                 </ListItemIcon>
                                 <ListItemText primary="Logout" />
                             </ListItem>
-                        </List>
-                    </div>
+                            :
+                            <div
+                                style={{
+                                    justifyContent: 'center',
+                                    alignContent: 'center',
+                                    width: '100%',
+                                    display: 'inline-flex'
+                                }}>
+                                <Button
+                                    variant="contained"
+                                    style={{
+                                        color: '#fff',
+                                        backgroundColor: '#087059',
+                                        width: '80%',
+                                        marginTop: 50
+                                    }}>Login</Button>
+                            </div>
+                        }
+                    </List>
                 </React.Fragment>
             </Dialog>
         </React.Fragment>
