@@ -17,6 +17,9 @@ import { MdReceipt, MdRateReview } from 'react-icons/md';
 import { GiHelp, GiBallerinaShoes } from 'react-icons/gi';
 import { FiGift, } from 'react-icons/fi';
 
+//Components
+import CategoriesPanel from './CategoriesExpansionPanel';
+
 // Casecading Styleheet
 import '../App.css';
 
@@ -62,8 +65,6 @@ class Drawer extends Component {
         const { classes } = this.props;
         const { open } = this.state;
 
-        console.log(open)
-
         return (
             <React.Fragment>
                 <Dialog fullScreen open={open} onClose={this.handleClose} TransitionComponent={Transition}>
@@ -86,94 +87,7 @@ class Drawer extends Component {
                             </IconButton>
                         </Toolbar>
                     </AppBar>
-                    <div>
-                        <List
-                            component="nav"
-                            subheader={
-                                <ListSubheader component="div" style={{ position: 'relative' }}>
-                                    Popular Searches
-                        </ListSubheader>
-                            }>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FaMobileAlt style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="SmartPhones" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FaTshirt style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="Clothes" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <GiBallerinaShoes style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="Shoes" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FiGift style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="Discounts" />
-                            </ListItem>
-                        </List>
-                        <Divider />
-                        <List component="nav">
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FaRegUserCircle style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="My Account" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <MdReceipt style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="My Orders" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FaRegUserCircle style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="My Cart" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <MdRateReview style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="My Reviews" />
-                            </ListItem>
-                        </List>
-                        <Divider />
-                        <List
-                            component="nav"
-                            subheader={
-                                <ListSubheader component="div" style={{ position: 'relative', top: 0, zIndex: 1, }}>
-                                    Settings
-                        </ListSubheader>
-                            }>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FaRegUserCircle style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="Account Settings" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <MdReceipt style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="My Orders" />
-                            </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
-                                <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <ExitToAppIcon style={{ fontSize: 21, color: 'inherit' }} />
-                                </ListItemIcon>
-                                <ListItemText primary="Logout" />
-                            </ListItem>
-                        </List>
-                    </div>
+                    
                 </Dialog>
             </React.Fragment>
         );
