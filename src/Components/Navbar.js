@@ -18,7 +18,7 @@ import { MdReceipt, MdRateReview } from 'react-icons/md';
 
 // Components
 import CategoriesButton from './CategoriesDropDown';
-import DrawerMenu from '../Components/MenuDrawer';
+import DrawerMenu from './MobileMenuDrawer';
 
 //Sweetalert
 import Swal from 'sweetalert2';
