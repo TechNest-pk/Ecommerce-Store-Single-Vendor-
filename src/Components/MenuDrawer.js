@@ -15,7 +15,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { FaRegUserCircle, FaMobileAlt, FaTshirt } from 'react-icons/fa';
 import { MdReceipt, MdRateReview } from 'react-icons/md';
 import { GiHelp, GiBallerinaShoes } from 'react-icons/gi';
-import { FiGift, } from 'react-icons/fi';
+import { FiGift, FiSettings, FiShoppingCart } from 'react-icons/fi';
 
 // Casecading Styleheet
 import '../App.css';
@@ -172,13 +172,13 @@ function FullScreenDialog(props) {
                             </ListItem>
                             <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
                                 <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FaRegUserCircle style={{ fontSize: 21, color: 'inherit' }} />
+                                    <FiShoppingCart style={{ fontSize: 21, color: 'inherit' }} />
                                 </ListItemIcon>
                                 <ListItemText primary="My Cart" />
                             </ListItem>
                             <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
                                 <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FaRegUserCircle style={{ fontSize: 21, color: 'inherit' }} />
+                                    <MdReceipt style={{ fontSize: 21, color: 'inherit' }} />
                                 </ListItemIcon>
                                 <ListItemText primary="My Reviews" />
                             </ListItem>
@@ -195,16 +195,16 @@ function FullScreenDialog(props) {
                         {isUserLoggedIn &&
                             <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
                                 <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                    <FaRegUserCircle style={{ fontSize: 21, color: 'inherit' }} />
+                                    <FiSettings style={{ fontSize: 21, color: 'inherit' }} />
                                 </ListItemIcon>
                                 <ListItemText primary="Account Settings" />
                             </ListItem>
                         }
                         <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>
                             <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <MdReceipt style={{ fontSize: 21, color: 'inherit' }} />
+                                <GiHelp style={{ fontSize: 21, color: 'inherit' }} />
                             </ListItemIcon>
-                            <ListItemText primary="My Orders" />
+                            <ListItemText primary="Help" />
                         </ListItem>
                         {isUserLoggedIn ?
                             <ListItem button className={classes.listItem} onClick={() => { props.history.push('/') }}>

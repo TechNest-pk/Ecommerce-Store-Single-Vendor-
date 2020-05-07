@@ -184,7 +184,7 @@ class Appbar extends Component {
                                 </Typography>
                                 </Grid>
                                 <Grid sm={12}>
-                                    <Link to='/user'>
+                                    <Link to='/user/profile'>
                                         <Typography variant="caption">
                                             View and edit profile
                                     </Typography>
