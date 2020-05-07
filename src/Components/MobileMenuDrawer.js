@@ -72,6 +72,11 @@ class Drawer extends Component {
         }
     }
 
+    handleButtonPress = (path) => {
+        this.props.history.push(path);
+        this.handleClose();
+    }
+
     render() {
         const { classes } = this.props;
         const { open, keyword, isUserLoggedIn } = this.state;
@@ -86,6 +91,7 @@ class Drawer extends Component {
                         <Toolbar>
                             <Typography
                                 variant="h6"
+                                onClick={() => this.props.history.push('/')}
                                 style={{
                                     textAlign: 'center',
                                     verticalAlign: 'middle',
@@ -132,25 +138,25 @@ class Drawer extends Component {
                                     Popular Searches
                             </ListSubheader>
                             }>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
+                            <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
                                 <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
                                     <FaMobileAlt style={{ fontSize: 21, color: 'inherit' }} />
                                 </ListItemIcon>
                                 <ListItemText primary="SmartPhones" />
                             </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
+                            <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
                                 <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
                                     <FaTshirt style={{ fontSize: 21, color: 'inherit' }} />
                                 </ListItemIcon>
                                 <ListItemText primary="Clothes" />
                             </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
+                            <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
                                 <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
                                     <GiBallerinaShoes style={{ fontSize: 21, color: 'inherit' }} />
                                 </ListItemIcon>
                                 <ListItemText primary="Shoes" />
                             </ListItem>
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/discounts') }}>
+                            <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
                                 <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
                                     <FiGift style={{ fontSize: 21, color: 'inherit' }} />
                                 </ListItemIcon>
@@ -161,7 +167,7 @@ class Drawer extends Component {
                                     style={{ margin: 0, }}
                                     primary={
                                         <span
-                                            onClick={() => { this.props.history.push('/categories') }}
+                                            onClick={() => { this.handleButtonPress('/categories') }}
                                             style={{ float: 'right', display: 'block', fontSize: 14, color: '#087059' }}>
                                             See all Categories
                                         </span>
@@ -171,25 +177,25 @@ class Drawer extends Component {
                         <Divider />
                         {isUserLoggedIn &&
                             <List component="nav">
-                                <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
+                                <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
                                     <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
                                         <FaRegUserCircle style={{ fontSize: 21, color: 'inherit' }} />
                                     </ListItemIcon>
                                     <ListItemText primary="My Account" />
                                 </ListItem>
-                                <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
+                                <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
                                     <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
                                         <MdReceipt style={{ fontSize: 21, color: 'inherit' }} />
                                     </ListItemIcon>
                                     <ListItemText primary="My Orders" />
                                 </ListItem>
-                                <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
+                                <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
                                     <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
                                         <FiShoppingCart style={{ fontSize: 21, color: 'inherit' }} />
                                     </ListItemIcon>
                                     <ListItemText primary="My Cart" />
                                 </ListItem>
-                                <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
+                                <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
                                     <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
                                         <MdRateReview style={{ fontSize: 21, color: 'inherit' }} />
                                     </ListItemIcon>
@@ -206,21 +212,21 @@ class Drawer extends Component {
                         </ListSubheader>
                             }>
                             {isUserLoggedIn &&
-                                <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
+                                <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
                                     <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
                                         <FiSettings style={{ fontSize: 21, color: 'inherit' }} />
                                     </ListItemIcon>
                                     <ListItemText primary="Account Settings" />
                                 </ListItem>
                             }
-                            <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
+                            <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
                                 <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
                                     <GiHelp style={{ fontSize: 21, color: 'inherit' }} />
                                 </ListItemIcon>
                                 <ListItemText primary="Help" />
                             </ListItem>
                             {isUserLoggedIn ?
-                                <ListItem button className={classes.listItem} onClick={() => { this.props.history.push('/') }}>
+                                <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
                                     <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
                                         <ExitToAppIcon style={{ fontSize: 21, color: 'inherit' }} />
                                     </ListItemIcon>

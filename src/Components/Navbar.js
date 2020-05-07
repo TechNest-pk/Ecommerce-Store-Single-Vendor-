@@ -360,6 +360,7 @@ class Appbar extends Component {
                         <DrawerMenu />
                         <Typography
                             variant="h6"
+                            onClick={() => this.props.history.push('/')}
                             style={{
                                 textAlign: 'center',
                                 verticalAlign: 'middle',
