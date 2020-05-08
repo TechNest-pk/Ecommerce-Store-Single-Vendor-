@@ -87,7 +87,7 @@ class Drawer extends Component {
                             </IconButton>
                         </Toolbar>
                     </AppBar>
-                    
+                    <CategoriesPanel />
                 </Dialog>
             </React.Fragment>
         );
