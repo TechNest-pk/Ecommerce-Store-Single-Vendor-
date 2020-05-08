@@ -52,13 +52,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 class Drawer extends Component {
 
-    state={
+    state = {
         open: true,
 
     }
 
     handleClose = () => {
-        this.setState({open: false});
+        this.setState({ open: false });
     }
 
     render() {
@@ -87,7 +87,7 @@ class Drawer extends Component {
                             </IconButton>
                         </Toolbar>
                     </AppBar>
-                    <CategoriesPanel />
+                    <CategoriesPanel hideDrawer={this.handleClose} categories={[1, 2, 3, 4, 5]} />
                 </Dialog>
             </React.Fragment>
         );

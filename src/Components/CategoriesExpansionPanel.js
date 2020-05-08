@@ -1,5 +1,8 @@
 import React from 'react';
 
+//React Router
+import { withRouter } from 'react-router-dom';
+
 //Material UI
 import { Typography, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -17,128 +20,71 @@ import { MdReceipt, MdRateReview } from 'react-icons/md';
 import { GiHelp, GiBallerinaShoes } from 'react-icons/gi';
 import { FiGift, } from 'react-icons/fi';
 
-export default function CustomizedExpansionPanels(props) {
+function App(props) {
 
-    const [expanded, setExpanded] = React.useState('panel1');
+    const [expanded, setExpanded] = React.useState(null);
     const classes = useStyles();
+    const categories = props.categories;
 
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
 
+    const handleButtonPress = (path) => {
+        props.history.push(path);
+        props.hideDrawer();
+    };
+
     return (
         <div>
-            <ExpansionPanel square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
-                    <Typography>Collapsible Group Item #1</Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    <List component="nav">
-                        <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
-                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <FaMobileAlt style={{ fontSize: 21, color: 'inherit' }} />
-                            </ListItemIcon>
-                            <ListItemText primary="SmartPhones" />
-                        </ListItem>
-                        <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
-                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <FaTshirt style={{ fontSize: 21, color: 'inherit' }} />
-                            </ListItemIcon>
-                            <ListItemText primary="Clothes" />
-                        </ListItem>
-                        <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
-                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <GiBallerinaShoes style={{ fontSize: 21, color: 'inherit' }} />
-                            </ListItemIcon>
-                            <ListItemText primary="Shoes" />
-                        </ListItem>
-                        <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
-                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <FiGift style={{ fontSize: 21, color: 'inherit' }} />
-                            </ListItemIcon>
-                            <ListItemText primary="Discounts" />
-                        </ListItem>
-                    </List>
-                </ExpansionPanelDetails>
-            </ExpansionPanel>
-            <ExpansionPanel square expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-                <ExpansionPanelSummary aria-controls="panel2d-content" id="panel2d-header">
-                    <Typography>Collapsible Group Item #2</Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    <List component="nav">
-                        <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
-                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <FaMobileAlt style={{ fontSize: 21, color: 'inherit' }} />
-                            </ListItemIcon>
-                            <ListItemText primary="SmartPhones" />
-                        </ListItem>
-                        <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
-                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <FaTshirt style={{ fontSize: 21, color: 'inherit' }} />
-                            </ListItemIcon>
-                            <ListItemText primary="Clothes" />
-                        </ListItem>
-                        <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
-                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <GiBallerinaShoes style={{ fontSize: 21, color: 'inherit' }} />
-                            </ListItemIcon>
-                            <ListItemText primary="Shoes" />
-                        </ListItem>
-                        <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
-                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <FiGift style={{ fontSize: 21, color: 'inherit' }} />
-                            </ListItemIcon>
-                            <ListItemText primary="Discounts" />
-                        </ListItem>
-                    </List>
-                </ExpansionPanelDetails>
-            </ExpansionPanel>
-            <ExpansionPanel square expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-                <ExpansionPanelSummary aria-controls="panel3d-content" id="panel3d-header">
-                    <Typography>Collapsible Group Item #3</Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    <List component="nav">
-                        <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
-                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <FaMobileAlt style={{ fontSize: 21, color: 'inherit' }} />
-                            </ListItemIcon>
-                            <ListItemText primary="SmartPhones" />
-                        </ListItem>
-                        <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
-                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <FaTshirt style={{ fontSize: 21, color: 'inherit' }} />
-                            </ListItemIcon>
-                            <ListItemText primary="Clothes" />
-                        </ListItem>
-                        <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
-                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <GiBallerinaShoes style={{ fontSize: 21, color: 'inherit' }} />
-                            </ListItemIcon>
-                            <ListItemText primary="Shoes" />
-                        </ListItem>
-                        <ListItem button className={classes.listItem} onClick={() => { this.handleButtonPress('/') }}>
-                            <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
-                                <FiGift style={{ fontSize: 21, color: 'inherit' }} />
-                            </ListItemIcon>
-                            <ListItemText primary="Discounts" />
-                        </ListItem>
-                    </List>
-                </ExpansionPanelDetails>
-            </ExpansionPanel>
+            {
+                categories.map((val, index) => {
+                    console.log(`panel${index + 1}d-content`);
+                    return (
+                        <ExpansionPanel square expanded={expanded === `panel${index + 1}`} onChange={handleChange(`panel${index + 1}`)}>
+                            <ExpansionPanelSummary aria-controls={`panel${index + 1}d-content`} id={`panel${index + 1}d-header`}>
+                                <ListItem button className={classes.listItem}>
+                                    <ListItemIcon style={{ minWidth: '40px', width: '40px', color: 'inherit' }}>
+                                        <FaMobileAlt style={{ fontSize: 21, color: 'inherit' }} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Mobile Phones" />
+                                </ListItem>
+                            </ExpansionPanelSummary>
+                            <ExpansionPanelDetails>
+                                <List component="nav">
+                                    <ListItem button className={classes.listItems} onClick={() => { handleButtonPress('/') }}>
+                                        <ListItemText primary="Samsung" />
+                                    </ListItem>
+                                    <ListItem button className={classes.listItems} onClick={() => { handleButtonPress('/') }}>
+                                        <ListItemText primary="Apple" />
+                                    </ListItem>
+                                    <ListItem button className={classes.listItems} onClick={() => { handleButtonPress('/') }}>
+                                        <ListItemText primary="Oppo" />
+                                    </ListItem>
+                                    <ListItem button className={classes.listItems} onClick={() => { handleButtonPress('/') }}>
+                                        <ListItemText primary="Google" />
+                                    </ListItem>
+                                </List>
+                            </ExpansionPanelDetails>
+                        </ExpansionPanel>
+                    )
+                })
+            }
         </div>
     );
 }
 
 const useStyles = makeStyles(theme => ({
     listItem: {
-        backgroundColor: '#fff',
         color: '#666666',
         '&:hover': {
             backgroundColor: '#087059',
             color: '#fff',
         },
+    },
+    listItems: {
+        color: '#666666',
+        width: '100%',
     },
     listItemActive: {
         margin: 3,
@@ -185,5 +131,8 @@ const ExpansionPanelSummary = withStyles({
 const ExpansionPanelDetails = withStyles((theme) => ({
     root: {
         padding: theme.spacing(2),
+        display: 'block'
     },
 }))(MuiExpansionPanelDetails);
+
+export default withRouter(App);
