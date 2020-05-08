@@ -39,7 +39,6 @@ function App(props) {
         <div>
             {
                 categories.map((val, index) => {
-                    console.log(`panel${index + 1}d-content`);
                     return (
                         <ExpansionPanel square expanded={expanded === `panel${index + 1}`} onChange={handleChange(`panel${index + 1}`)}>
                             <ExpansionPanelSummary aria-controls={`panel${index + 1}d-content`} id={`panel${index + 1}d-header`}>
