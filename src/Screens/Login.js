@@ -116,7 +116,7 @@ class Login extends Component {
 
         firebase.auth().signInWithEmailAndPassword(username, password)
             .then(() => {
-                console.log('User Auth Succesfull');
+               this.props.history.replace('/')
             })
             .catch(function (error) {
                 var errorMessage = error.message;
