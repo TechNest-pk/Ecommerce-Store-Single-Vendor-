@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 
 //firebase 
 import firebase from '../Config/Firebase';
+import { serverUrl } from '../Config/Backend';
 
 //Axios
 import axios from 'axios';
@@ -37,7 +38,7 @@ class Register extends Component {
         showPassword: false,
     }
 
-    createUser = () => {
+    userRegisterationHandler = () => {
         const { username,
             password,
             confirm_password,
@@ -50,7 +51,7 @@ class Register extends Component {
             firebase.auth().createUserWithEmailAndPassword(username, password)
                 .then(() => {
                     axios({
-                        url: 'http://localhost:8000/user/add-user',
+                        url: `${serverUrl}user/user-register`,
                         method: "POST",
                         data: {
                             email: username,
@@ -58,21 +59,22 @@ class Register extends Component {
                             userName: f_name + ' ' + l_name,
                             contact: contact,
                         },
-                    }).then(response => {
-                        //handle success
-                        console.log(response);
-                        swal.fire({
-                            icon: 'success',
-                            title: 'Mobile Store',
-                            text: 'You are registered successfully',
-                        }).then(() => window.location.replace('/'))
-                    }).catch(err => {
-                        //handle error
-                        swal.fire({
-                            icon: 'error',
-                            title: "Internal Server Error",
+                    })
+                        .then(response => {
+                            swal.fire({
+                                icon: 'success',
+                                title: 'Mobile Store',
+                                text: 'You are registered successfully',
+                            })
+                                .then(() => window.location.replace('/'))
+                        })
+                        .catch(err => {
+                            //handle error
+                            swal.fire({
+                                icon: 'error',
+                                title: "Internal Server Error",
+                            });
                         });
-                    });
                 })
                 .catch(function (error) {
                     // Handle Errors here.
@@ -337,7 +339,7 @@ class Register extends Component {
                                     backgroundColor: '#087059',
                                     borderColor: 'transparent'
                                 }}
-                                // onClick={this.createUser}
+                                onClick={this.userRegisterationHandler}
                             >
                                 Sign up
                             </Button>
@@ -363,7 +365,7 @@ class Register extends Component {
                                             backgroundColor: '#DB4437',
                                             borderColor: 'transparent'
                                         }}
-                                        // onClick={this.loginWithGoogle}
+                                    // onClick={this.loginWithGoogle}
                                     >
                                         Login with Google
                                     </Button>
@@ -378,7 +380,7 @@ class Register extends Component {
                                             backgroundColor: '#4267B2',
                                             borderColor: 'transparent'
                                         }}
-                                        // onClick={this.loginWithFaceBook}
+                                    // onClick={this.loginWithFaceBook}
                                     >
                                         Login with Facebook
                                     </Button>

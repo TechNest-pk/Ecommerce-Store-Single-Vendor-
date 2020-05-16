@@ -8,7 +8,7 @@ import axios from 'axios';
 
 //Config
 import firebase from '../Config/Firebase';
-import { urlToServer } from '../Config/Backend';
+import { serverUrl } from '../Config/Backend';
 
 //Material UI
 import { withStyles } from '@material-ui/core/styles';

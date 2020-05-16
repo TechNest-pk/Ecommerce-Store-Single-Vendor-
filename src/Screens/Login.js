@@ -111,7 +111,7 @@ class Login extends Component {
         //     });
     }
 
-    authUser = () => {
+    loginHandler = () => {
         const { username, password } = this.state;
 
         firebase.auth().signInWithEmailAndPassword(username, password)
@@ -156,7 +156,7 @@ class Login extends Component {
                         placeholder="Enter Email Address"
                         autoComplete="email"
                         autoFocus
-                        onChange={e => { this.setState({ email: e.target.value }) }}
+                        onChange={e => { this.setState({ username: e.target.value }) }}
                         InputProps={{
                             classes: {
                                 notchedOutline: classes.notchedOutline,
@@ -216,7 +216,7 @@ class Login extends Component {
                             // textTransform: 'capitalize',
                             backgroundColor: '#087059'
                         }}
-                        onClick={this.authUser}
+                        onClick={this.loginHandler}
                     >
                         Login
                     </Button>
@@ -243,7 +243,7 @@ class Login extends Component {
                                 onClick={this.loginWithGoogle}
                                 size="small"
                             >
-                                Login with Google
+                                Google
                             </Button>
                         </Grid>
                         <Grid item xs={6}>
@@ -260,7 +260,7 @@ class Login extends Component {
                                 onClick={this.loginWithFaceBook}
                                 size="small"
                             >
-                                Login with Facebook
+                                Facebook
                             </Button>
                         </Grid>
                     </Grid>

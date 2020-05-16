@@ -52,7 +52,7 @@ class Drawer extends Component {
     state = {
         open: false,
         keyword: '',
-        isUserLoggedIn: false,
+        isUserLoggedIn: true,
     }
 
     handleClickOpen = () => {
