@@ -8,7 +8,11 @@ import {
 } from "react-router-dom";
 
 //Config
+import { serverUrl } from './Config/Backend';
 import firebase from './Config/Firebase';
+
+//Axios
+import axios from 'axios';
 
 //Casecading Stylesheet
 import './App.css';
@@ -29,6 +33,7 @@ class App extends Component {
     state = {
         userId: null,
         userEmail: null,
+        userData: {},
     }
 
     componentDidMount() {
@@ -40,11 +45,14 @@ class App extends Component {
         firebase.auth().onAuthStateChanged((user) => {
 
             if (user) {
+                const userId = firebase.auth().currentUser.uid;
+                const email = firebase.auth().currentUser.email;
                 this.setState({
-                    userId: firebase.auth().currentUser.uid,
-                    userEmail: firebase.auth().currentUser.email,
+                    userId: userId,
+                    userEmail: email,
+                }, () => {
+                    this.getUser(userId);
                 });
-                console.log('User Logged in');
             }
             else {
                 this.setState({
@@ -56,11 +64,30 @@ class App extends Component {
         });
     }
 
+    getUser = (userId) => {
+        axios({
+            url: `${serverUrl}user/get-current-user`,
+            method: "POST",
+            data: { userId: userId }
+        })
+            .then(response => {
+                this.setState({
+                    userData: response.data.data,
+                })
+            })
+            .catch(err => {
+                //handle error
+                console.log(err);
+            });
+    }
+
     render() {
+
+        const { userId, userData } = this.state;
 
         return (
             <React.Fragment>
-                <Navbar />
+                <Navbar user={userId} userData={userData} />
                 <div style={{ height: 130 }} />
                 <Switch>
                     <Route path="/" exact render={props => (<LandingPage {...props} />)} />

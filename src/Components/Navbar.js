@@ -7,9 +7,17 @@ import { Link, withRouter } from 'react-router-dom';
 import { Grid, Container, Typography, AppBar, Toolbar, Button, Menu, Paper, Divider, List, ListItem, ListItemIcon, ListItemText, FormControl, OutlinedInput, InputAdornment, Avatar, IconButton, Badge, TextField } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
+//Config
+import { serverUrl } from '../Config/Backend';
+import firebase from '../Config/Firebase';
+
+//Axios
+import axios from 'axios';
+
 //Icons
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { FiGift, FiShoppingCart } from 'react-icons/fi';
 import { FaMobileAlt, FaTshirt, FaFonticonsFi } from 'react-icons/fa';
@@ -21,7 +29,7 @@ import CategoriesButton from './CategoriesDropDown';
 import DrawerMenu from './MobileMenuDrawer';
 
 //Sweetalert
-import Swal from 'sweetalert2';
+import swal from 'sweetalert2';
 
 // Casecading Styleheet
 import '../App.css';
@@ -108,16 +116,104 @@ const styles = theme => ({
     listItemIcon: {
         minWidth: 30,
     },
+    loginBtn: {
+        color: '#087059',
+        fontSize: 18,
+
+    },
+    btn: {
+        color: '#fff',
+        backgroundColor: '#087059',
+        height: 47,
+        // width: 200,
+        boxShadow: 'none',
+        '&:hover': {
+            color: '#fff',
+            backgroundColor: '#087059',
+            boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)'
+        }
+
+    },
+    userbtn: {
+        color: '#087059',
+        textTransform: 'Capitalize',
+        '&:hover': {
+            color: '#666666',
+            backgroundColor: 'transparent',
+        }
+    }
 });
 
 class Appbar extends Component {
 
     state = {
         keyword: '',
+        user: {},
         cartQuantity: null,
         anchorEl: false,
-        isUserLoggedIn: true,
+        isUserLoggedIn: false,
     }
+
+    componentDidMount() {
+        const { user } = this.props;
+
+        if (user) {
+            this.setState({
+                isUserLoggedIn: true,
+            })
+        }
+        else {
+            this.setState({
+                isUserLoggedIn: false,
+            })
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        const { user } = this.props;
+
+        if (prevProps !== this.props) {
+            if (user) {
+                this.setState({
+                    isUserLoggedIn: true,
+                })
+            }
+            else {
+                this.setState({
+                    isUserLoggedIn: false,
+                })
+            }
+        }
+    }
+
+    handleLogout = () => {
+
+        firebase.auth().signOut()
+            .then(function () {
+                this.props.history.push('/');
+            })
+            .catch(function (error) {
+            });
+    }
+
+    // getUser = (userId) => {
+    //     axios({
+    //         url: `${serverUrl}user/get-current-user`,
+    //         method: "POST",
+    //         data: { userId: userId }
+    //     })
+    //         .then(response => {
+    //             console.log(response.data);
+    //             this.setState({
+    //                 // username: response.data.data.name,
+    //                 isUserLoggedIn: true,
+    //             })
+    //         })
+    //         .catch(err => {
+    //             //handle error
+    //             console.log(err);
+    //         });
+    // }
 
     handleKeyPress(target, value) {
         const { history } = this.props;
@@ -136,10 +232,6 @@ class Appbar extends Component {
         this.setState({ anchorEl: null });
     }
 
-    logout = () => {
-
-    }
-
     renderAccountMenu = () => {
         const { classes, user, categories } = this.props;
         const { isUserLoggedIn, anchorEl, cartQuantity, keyword } = this.state;
@@ -154,10 +246,10 @@ class Appbar extends Component {
                     </IconButton>
                 </Link>
                 <Button
-                    className={classes.iconButton}
-                    onClick={this.handleClick} style={{ marginRight: 0 }}><Avatar alt="Remy Sharp"
-                    // src={photoURL}
-                    /></Button>
+                    className={classes.userbtn}
+                    onClick={this.handleClick} style={{ marginRight: 0 }}>
+                    Talha Khalid<ArrowDropDownIcon />
+                </Button>
                 <Menu
                     id="simple-menu"
                     anchorEl={anchorEl}
@@ -211,13 +303,13 @@ class Appbar extends Component {
                         <Link to='/cart' style={{ textDecoration: 'none', color: 'black' }}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <FiShoppingCart />
+                                    <FiShoppingCart style={{ fontSize: 21, color: 'inherit' }} />
                                 </ListItemIcon>
                                 <ListItemText primary="My Cart" />
                             </ListItem>
                         </Link>
                         <Divider />
-                        <ListItem onClick={this.logout} button>
+                        <ListItem onClick={this.handleLogout} button>
                             <ListItemIcon>
                                 <ExitToAppIcon />
                             </ListItemIcon>
@@ -341,9 +433,19 @@ class Appbar extends Component {
                             <div style={{
                                 width: 200,
                             }}>
-                                {!isUserLoggedIn && <h5>Login</h5>}
-                                {isUserLoggedIn &&
+                                {isUserLoggedIn ?
                                     this.renderAccountMenu()
+                                    :
+                                    // <Link style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    //     <strong className={classes.loginBtn}>Login</strong>
+                                    // </Link>
+                                    <Button
+                                        variant="contained"
+                                        className={classes.btn}
+                                        onClick={() => { this.props.history.push('/login') }}
+                                    >
+                                        Login
+                                </Button>
                                 }
                             </div>
                         </Toolbar>
@@ -374,7 +476,7 @@ class Appbar extends Component {
                     </Container>
                 </AppBar>
 
-            </div>
+            </div >
         );
     }
 
