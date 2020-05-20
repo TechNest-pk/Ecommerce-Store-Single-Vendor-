@@ -90,12 +90,18 @@ class LandingPage extends Component {
                 <Grid container spacing={1}>
                     <Grid item xs={12}>
                         <Typography variant="h5" style={{ marginBottom: 10 }}>
-                            Categories
+                            Flash Sale
                         </Typography>
                     </Grid>
-                    <Grid item xs={12}>
-                        <ListProd data={items} />
-                    </Grid>
+                    {
+                        items.map((item, index) => {
+                            return (
+                                <Grid item xs={6} sm={6} md={2} lg={2} key={index}>
+                                    <Products data={item} origin="Landing Page" />
+                                </Grid>
+                            )
+                        })
+                    }
                 </Grid>
                 <div style={{ height: 20 }} />
                 <Grid container spacing={1}>
@@ -113,6 +119,17 @@ class LandingPage extends Component {
                             )
                         })
                     }
+                </Grid>
+                <div style={{ height: 20 }} />
+                <Grid container spacing={1}>
+                    <Grid item xs={12}>
+                        <Typography variant="h5" style={{ marginBottom: 10 }}>
+                            Categories
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <ListProd data={items} />
+                    </Grid>
                 </Grid>
             </Container>
         )
