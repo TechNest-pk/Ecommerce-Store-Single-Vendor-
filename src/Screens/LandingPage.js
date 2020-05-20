@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { CssBaseline, Grid, Container, Typography, TextField, Button, Card, InputAdornment } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 //Config
 import { serverUrl } from '../Config/Backend';
@@ -48,6 +49,8 @@ class LandingPage extends Component {
 
     state = {
         items: [],
+
+        isLoading: true,
     }
 
     componentDidMount() {
@@ -63,6 +66,7 @@ class LandingPage extends Component {
             .then(response => {
                 this.setState({
                     items: response.data.products,
+                    isLoading: false,
                 })
             })
             .catch(err => {
@@ -71,8 +75,7 @@ class LandingPage extends Component {
 
     }
 
-    render() {
-
+    renderLandingPage = () => {
         const { items } = this.state;
 
         return (
@@ -112,6 +115,26 @@ class LandingPage extends Component {
                     }
                 </Grid>
             </Container>
+        )
+    }
+
+    render() {
+        return (
+            <Fragment>
+                <div
+                    style={{
+                        display: 'flex',
+                        minHeight: '50vh',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        // display: 'inline-flex',
+                        // width: '100%',
+                        // margin: 20,
+                    }}>
+                    <CircularProgress style={{color: '#087059', fontSize: 21 }} />
+                </div>
+            </Fragment>
         )
     }
 }

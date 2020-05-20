@@ -35,10 +35,17 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const formatter = new Intl.NumberFormat('en-US', {
+    // style: 'currency',
+    // currency: 'PKR',
+    minimumFractionDigits: 0
+})
+
 export default function ProductCard(props) {
 
     const classes = useStyles();
     const prod = props.data
+    console.log(prod)
 
     return (
         <div>
@@ -48,7 +55,7 @@ export default function ProductCard(props) {
                     <div className={classes.cardImg}>
                         <CardMedia
                             className={classes.media}
-                            image={image}
+                            // image={image}
                             // component={<img src={image} style={{ width: '100%', height: 'auto', display: 'block' }} />}
                             title="Add to Cart"
                         />
@@ -58,7 +65,8 @@ export default function ProductCard(props) {
                             {prod.title}
                         </Typography>
                         <Typography variant="h6" style={{ color: 'orange', textAlign: 'center', marginBottom: '-12px' }} color="textSecondary" component="h6">
-                            Rs. 5,000
+                            {/* {formatter.format(prod.price)} */}
+                            {prod.price}
                         </Typography>
                     </CardContent>
                 </Link>
