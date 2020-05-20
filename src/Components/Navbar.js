@@ -176,9 +176,6 @@ class Appbar extends Component {
         const { user } = this.props;
 
         if (prevProps !== this.props) {
-
-            console.log('props update')
-
             if (user) {
                 this.setState({
                     isUserLoggedIn: true,
@@ -199,7 +196,6 @@ class Appbar extends Component {
             method: 'GET',
         })
             .then(response => {
-                console.log(response.data.data)
                 this.setState({
                     appBarCategories: response.data.data,
                 })

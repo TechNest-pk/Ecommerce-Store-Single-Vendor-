@@ -65,33 +65,36 @@ class ProductDetails extends React.Component {
     }
 
     componentDidMount() {
-        const { userData, firebaseUserId } = this.props;
-        const { userInfo, } = this.state;
+        const { userData } = this.props;
+        const { userInfo } = this.state;
 
         //Get Prdouct Details
         this.getProductDetails();
 
         //Check User
-        if (!userInfo) {
-            this.setState({
-                userInfo: userData
-            })
-        }
+        // if (!userInfo) {
+        //     if (userData) {
+        //         this.setState({
+        //             userInfo: userData
+        //         })
+        //     }
+        // }
 
     }
 
-    componentDidUpdate(prevProps) {
-        const { userData } = this.props;
+    // componentDidUpdate(prevProps) {
+    //     const { userData } = this.props;
+    //     const { userInfo } = this.state;
 
-        if (prevProps !== this.props) {
+    //     if (prevProps !== this.props) {
 
-            if (userData) {
-                this.setState({
-                    userInfo: userData
-                })
-            }
-        }
-    }
+    //         if (userData) {
+    //             this.setState({
+    //                 userInfo: userData
+    //             })
+    //         }
+    //     }
+    // }
 
     getProductDetails = () => {
 
@@ -103,7 +106,6 @@ class ProductDetails extends React.Component {
         })
             .then(response => {
 
-                console.log(response.data.product)
                 this.setState({
                     productDetails: response.data.product,
                     isLoading: false,
@@ -511,6 +513,8 @@ class ProductDetails extends React.Component {
     render() {
 
         const { productDetails, userInfo, isLoading } = this.state;
+
+        console.log('[ProductsDetails]' , userInfo);
 
         return (
             <Container maxWidth="lg">

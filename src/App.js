@@ -7,6 +7,9 @@ import {
     withRouter
 } from "react-router-dom";
 
+//Material UI
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 //Config
 import { serverUrl } from './Config/Backend';
 import firebase from './Config/Firebase';
@@ -33,7 +36,7 @@ class App extends Component {
     state = {
         userId: null,
         userEmail: null,
-        userData: {},
+        userData: null,
 
         isLoading: true,
     }
