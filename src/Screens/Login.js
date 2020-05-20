@@ -113,7 +113,7 @@ class Login extends Component {
 
         firebase.auth().signInWithEmailAndPassword(username, password)
             .then(() => {
-               this.props.history.replace('/')
+                window.location.replace('/')
             })
             .catch(function (error) {
                 var errorMessage = error.message;

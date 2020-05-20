@@ -71,33 +71,29 @@ class ProductDetails extends React.Component {
         //Get Prdouct Details
         this.getProductDetails();
 
-        //Check User
-        // if (!userInfo) {
-        //     if (userData) {
-        //         this.setState({
-        //             userInfo: userData
-        //         })
-        //     }
-        // }
+        if (userData) {
+            this.setState({
+                userInfo: userData
+            })
+        }
 
     }
 
-    // componentDidUpdate(prevProps) {
-    //     const { userData } = this.props;
-    //     const { userInfo } = this.state;
+    componentDidUpdate(prevProps) {
+        const { userData } = this.props;
+        const { userInfo } = this.state;
 
-    //     if (prevProps !== this.props) {
-
-    //         if (userData) {
-    //             this.setState({
-    //                 userInfo: userData
-    //             })
-    //         }
-    //     }
-    // }
+        if (prevProps !== this.props) {
+            console.log('props change hui')
+            if (userData) {
+                this.setState({
+                    userInfo: userData
+                })
+            }
+        }
+    }
 
     getProductDetails = () => {
-
         const prodId = this.props.match.params.prodId;
 
         axios({
@@ -105,7 +101,6 @@ class ProductDetails extends React.Component {
             method: "GET",
         })
             .then(response => {
-
                 this.setState({
                     productDetails: response.data.product,
                     isLoading: false,
@@ -143,26 +138,35 @@ class ProductDetails extends React.Component {
 
     handleAddToCart = () => {
         const { userInfo, productDetails, quantity } = this.state;
-        console.log(userInfo)
-        axios({
-            url: `${serverUrl}products/add-to-cart`,
-            method: "POST",
-            data: {
-                userId: userInfo._id,
-                prodId: productDetails._id,
-                quantity: quantity,
-            },
-        }).then(response => {
-            swal.fire({
-                icon: 'success',
-                title: 'Ecommerce Store',
-                text: 'Item added in Cart'
-            })
 
-        }).catch(err => {
-            //handle error
-            console.log(err);
-        });
+        if (userInfo) {
+            axios({
+                url: `${serverUrl}products/add-to-cart`,
+                method: "POST",
+                data: {
+                    userId: userInfo._id,
+                    prodId: productDetails._id,
+                    quantity: quantity,
+                },
+            }).then(response => {
+                swal.fire({
+                    icon: 'success',
+                    title: 'Ecommerce Store',
+                    text: 'Item added in Cart'
+                })
+
+            }).catch(err => {
+                //handle error
+                console.log(err);
+            });
+        }
+        else {
+            swal.fire({
+                icon: 'error',
+                title: 'Ecommerce Store',
+                text: 'Please Login first'
+            })
+        }
     }
 
     renderTopSection = (prod, user) => {
@@ -514,7 +518,7 @@ class ProductDetails extends React.Component {
 
         const { productDetails, userInfo, isLoading } = this.state;
 
-        console.log('[ProductsDetails]' , userInfo);
+        console.log('[ProductsDetails]', userInfo);
 
         return (
             <Container maxWidth="lg">

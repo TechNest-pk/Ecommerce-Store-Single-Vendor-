@@ -209,7 +209,7 @@ class Appbar extends Component {
 
         firebase.auth().signOut()
             .then(function () {
-                this.props.history.push('/');
+                window.location.replace('/');
             })
             .catch(function (error) {
             });
