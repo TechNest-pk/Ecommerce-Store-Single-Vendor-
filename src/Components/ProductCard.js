@@ -38,8 +38,7 @@ const useStyles = makeStyles(theme => ({
 export default function ProductCard(props) {
 
     const classes = useStyles();
-    const image = props.data.image;
-    const brandTitle = props.data.name;
+    const prod = props.data
 
     return (
         <div>
@@ -56,7 +55,7 @@ export default function ProductCard(props) {
                     </div>
                     <CardContent>
                         <Typography variant="h5" style={{ textAlign: 'center' }} color="textSecondary" component="h5">
-                            {brandTitle}
+                            {prod.title}
                         </Typography>
                         <Typography variant="h6" style={{ color: 'orange', textAlign: 'center', marginBottom: '-12px' }} color="textSecondary" component="h6">
                             Rs. 5,000

@@ -56,7 +56,7 @@ class App extends Component {
             }
             else {
                 this.setState({
-                    user: null,
+                    userId: null,
                     userEmail: null,
                 });
                 console.log('User not Logged in');

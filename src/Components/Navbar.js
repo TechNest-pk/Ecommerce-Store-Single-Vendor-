@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 //React Router
 import { Link, withRouter } from 'react-router-dom';
@@ -149,6 +149,7 @@ class Appbar extends Component {
     state = {
         keyword: '',
         user: {},
+        appBarCategories: [],
         cartQuantity: null,
         anchorEl: false,
         isUserLoggedIn: false,
@@ -156,6 +157,8 @@ class Appbar extends Component {
 
     componentDidMount() {
         const { user } = this.props;
+
+        this.getCategories();
 
         if (user) {
             this.setState({
@@ -173,6 +176,9 @@ class Appbar extends Component {
         const { user } = this.props;
 
         if (prevProps !== this.props) {
+
+            console.log('props update')
+
             if (user) {
                 this.setState({
                     isUserLoggedIn: true,
@@ -184,6 +190,23 @@ class Appbar extends Component {
                 })
             }
         }
+    }
+
+    getCategories = () => {
+
+        axios({
+            url: `${serverUrl}categories/get-appbar-categories`,
+            method: 'GET',
+        })
+            .then(response => {
+                console.log(response.data.data)
+                this.setState({
+                    appBarCategories: response.data.data,
+                })
+            })
+            .catch(err => {
+                console.log('Something went wrong')
+            })
     }
 
     handleLogout = () => {
@@ -323,7 +346,7 @@ class Appbar extends Component {
 
     renderNavigationList = () => {
         const { classes, user, categories } = this.props;
-        const { isUserLoggedIn, anchorEl, cartQuantity, keyword } = this.state;
+        const { isUserLoggedIn, anchorEl, cartQuantity, keyword, appBarCategories } = this.state;
 
         return (
             <Toolbar className={classes.navToolbar}>
@@ -331,15 +354,23 @@ class Appbar extends Component {
                 <div style={{ width: '10%' }} />
                 <div>
                     <List className={classes.ListItemGroup}>
-                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <ListItem className={classes.ListItem}>
-                                <ListItemIcon className={classes.listItemIcon}>
-                                    <FaMobileAlt />
-                                </ListItemIcon>
-                                <ListItemText primary="Smartphones" />
-                            </ListItem>
-                        </Link>
-                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                        {
+                            appBarCategories.map((category, index) => {
+                                return (
+                                    <Fragment key={index}>
+                                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <ListItem className={classes.ListItem}>
+                                                <ListItemIcon className={classes.listItemIcon}>
+                                                    <FaMobileAlt />
+                                                </ListItemIcon>
+                                                <ListItemText primary={category.name} />
+                                            </ListItem>
+                                        </Link>
+                                    </Fragment>
+                                )
+                            })
+                        }
+                        {/* <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
                             <ListItem className={classes.ListItem}>
                                 <ListItemIcon className={classes.listItemIcon}>
                                     <FaTshirt />
@@ -386,7 +417,7 @@ class Appbar extends Component {
                                 </ListItemIcon>
                                 <ListItemText primary="Discounts" />
                             </ListItem>
-                        </Link>
+                        </Link> */}
                     </List>
                 </div>
             </Toolbar>

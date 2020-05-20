@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { CssBaseline, Grid, Container, Typography, TextField, Button, Card, InputAdornment } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
+//Config
+import { serverUrl } from '../Config/Backend';
+import firebase from '../Config/Firebase';
+
+//Axios
+import axios from 'axios';
+
 //Assets
 import s6 from '../Assets/Images/s6.jpg'
 import s10 from '../Assets/Images/s10.jpeg'
@@ -39,7 +46,34 @@ const prodArr = [
 
 class LandingPage extends Component {
 
+    state = {
+        items: [],
+    }
+
+    componentDidMount() {
+        this.getLandingPageItems();
+    }
+
+    getLandingPageItems = () => {
+
+        axios({
+            url: `${serverUrl}products/get-landing-page-products`,
+            method: 'GET',
+        })
+            .then(response => {
+                this.setState({
+                    items: response.data.products,
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+    }
+
     render() {
+
+        const { items } = this.state;
 
         return (
             <Container maxWidth="lg">
@@ -68,10 +102,10 @@ class LandingPage extends Component {
                         </Typography>
                     </Grid>
                     {
-                        prodArr.map((prod, index) => {
+                        items.map((item, index) => {
                             return (
                                 <Grid item xs={6} sm={6} md={2} lg={2} key={index}>
-                                    <Products data={prod} origin="Landing Page" />
+                                    <Products data={item} origin="Landing Page" />
                                 </Grid>
                             )
                         })
