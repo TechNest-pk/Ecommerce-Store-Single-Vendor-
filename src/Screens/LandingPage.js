@@ -94,7 +94,7 @@ class LandingPage extends Component {
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <ListProd data={prodArr} />
+                        <ListProd data={items} />
                     </Grid>
                 </Grid>
                 <div style={{ height: 20 }} />
@@ -121,19 +121,24 @@ class LandingPage extends Component {
     render() {
         return (
             <Fragment>
-                <div
-                    style={{
-                        display: 'flex',
-                        minHeight: '50vh',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        // display: 'inline-flex',
-                        // width: '100%',
-                        // margin: 20,
-                    }}>
-                    <CircularProgress style={{color: '#087059', fontSize: 21 }} />
-                </div>
+                {
+                    this.state.isLoading ?
+                        <div
+                            style={{
+                                display: 'flex',
+                                minHeight: '50vh',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                // display: 'inline-flex',
+                                // width: '100%',
+                                // margin: 20,
+                            }}>
+                            <CircularProgress style={{ color: '#087059', opacity: 0.7, height: 50, width: 50 }} />
+                        </div>
+                        :
+                        this.renderLandingPage()
+                }
             </Fragment>
         )
     }

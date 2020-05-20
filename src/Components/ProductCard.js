@@ -44,7 +44,7 @@ const formatter = new Intl.NumberFormat('en-US', {
 export default function ProductCard(props) {
 
     const classes = useStyles();
-    const prod = props.data
+    const prod = props.data.productId;
     console.log(prod)
 
     return (
