@@ -97,6 +97,8 @@ class App extends Component {
                     <Route path="/user/:path/:userId" exact render={props => (<UserAccount {...props} />)} />
                     <Route path="/categories" exact render={props => (<CategoriesDrawer {...props} />)} />
                     <Route path="/product" exact render={props => (<ProductDetails {...props} firebaseUserId={userId} userData={userData} />)} />
+                    <Route path="/product/:prodId" exact render={props => (<ProductDetails {...props} firebaseUserId={userId} userData={userData} />)} />
+
                 </Switch>
             </React.Fragment >
         )

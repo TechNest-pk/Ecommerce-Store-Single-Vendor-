@@ -45,13 +45,12 @@ export default function ProductCard(props) {
 
     const classes = useStyles();
     const prod = props.data.productId;
-    console.log(prod)
 
     return (
         <div>
 
             <Card className={props.origin === 'Landing Page' ? classes.card : classes.cardListView}>
-                <Link to={`/product`} style={{ textDecoration: 'none', color: 'black' }} >
+                <Link to={`/product/${prod._id}`} style={{ textDecoration: 'none', color: 'black' }} >
                     <div className={classes.cardImg}>
                         <CardMedia
                             className={classes.media}

@@ -52,40 +52,39 @@ class ProductDetails extends React.Component {
     state = {
         quantity: 1,
         userData: {},
-        productData: {},
+        productDetails: {},
         description: '',
+
         isLoading: true,
+    }
+
+    componentDidMount() {
+        //     this.getUserDetails();
+        this.getProductDetails();
 
     }
 
-    // componentDidMount() {
-    //     this.getUserDetails();
-    //     this.getProductDetails();
+    getProductDetails = () => {
 
-    // }
+        const prodId = this.props.match.params.prodId;
 
-    // getProductDetails = () => {
+        axios({
+            url: `${serverUrl}products/get-details/${prodId}`,
+            method: "GET",
+        })
+            .then(response => {
 
-    //     const prodID = this.props.match.params.prodId;
-
-    //     console.log(prodID);
-
-    //     axios({
-    //         url: 'http://localhost:8000/products/get-product-details',
-    //         method: "POST",
-    //         data: { prodID: prodID },
-    //     }).then(response => {
-    //         this.setState({
-    //             productData: response.data.data,
-    //             isLoading: false,
-    //         }, () => {
-    //             console.log('kuch mila hai', this.state.description)
-    //         })
-    //     }).catch(err => {
-    //         //handle error
-    //         console.log(err);
-    //     });
-    // }
+                console.log(response.data.product)
+                this.setState({
+                    productDetails: response.data.product,
+                    isLoading: false,
+                })
+            })
+            .catch(err => {
+                //handle error
+                console.log(err);
+            });
+    }
 
     // getUserDetails = () => {
 
@@ -116,7 +115,7 @@ class ProductDetails extends React.Component {
     // }
 
     // handleBuyNow = () => {
-    //     const { userData, productData, quantity } = this.state;
+    //     const { userData, productDetails, quantity } = this.state;
 
     //     // const userID = userData._id;
     //     let msg = 'Item added in cart';
@@ -126,7 +125,7 @@ class ProductDetails extends React.Component {
     //         method: "POST",
     //         data: {
     //             userID: userData._id,
-    //             prodID: productData._id,
+    //             prodID: productDetails._id,
     //             quantity: quantity,
     //         },
     //     }).then(response => {
@@ -140,7 +139,7 @@ class ProductDetails extends React.Component {
     // }
 
     // handleAddToCart = () => {
-    //     const { userData, productData, quantity } = this.state;
+    //     const { userData, productDetails, quantity } = this.state;
 
     //     // const userID = userData._id;
     //     let msg = 'Item added in cart';
@@ -150,7 +149,7 @@ class ProductDetails extends React.Component {
     //         method: "POST",
     //         data: {
     //             userID: userData._id,
-    //             prodID: productData._id,
+    //             prodID: productDetails._id,
     //             quantity: quantity,
     //         },
     //     }).then(response => {
@@ -180,13 +179,13 @@ class ProductDetails extends React.Component {
 
     // handleReviews = () => {
 
-    //     const { productData, } = this.state;
+    //     const { productDetails, } = this.state;
 
     //     axios({
     //         url: 'http://localhost:8000/products/get-reviews',
     //         method: "POST",
     //         data: {
-    //             prodID: productData._id,
+    //             prodID: productDetails._id,
 
     //         },
     //     }).then(response => {
@@ -328,7 +327,7 @@ class ProductDetails extends React.Component {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item lg={3} md={3} sm={3} xs={12} style={{padding: 0}}>
+                    <Grid item lg={3} md={3} sm={3} xs={12} style={{ padding: 0 }}>
                         <div style={{ backgroundColor: '#fafafa' }}>
                             <div>
                                 <Typography style={{ paddingTop: '20px', paddingLeft: '20px', fontWeight: 'bold', marginBottom: 5 }} component="h6">Delivery Options</Typography>
@@ -491,7 +490,7 @@ class ProductDetails extends React.Component {
                             }}>
                                 <Typography variant="h4">4/5</Typography>
                                 {/* <div style={{ display: 'inline-block', verticalAlign: 'middle' }}> */}
-                                    <Rating name="read-only" value={4} style={{ fontSize: '30px' }} />
+                                <Rating name="read-only" value={4} style={{ fontSize: '30px' }} />
                                 {/* </div> */}
                                 {/* <div style={{
                                     width: '1px',
@@ -503,11 +502,11 @@ class ProductDetails extends React.Component {
                                     verticalAlign: 'middle',
                                 }} /> */}
                                 {/* <div style={{ display: 'inline-block', verticalAlign: 'middle', marginLeft: 10 }}> */}
-                                    <Typography>
-                                        <Link style={{ textDecoration: 'none', }}>
-                                            7 Ratings
+                                <Typography>
+                                    <Link style={{ textDecoration: 'none', }}>
+                                        7 Ratings
                                         </Link>
-                                    </Typography>
+                                </Typography>
                                 {/* </div> */}
                             </div>
                         </Grid>
@@ -552,45 +551,45 @@ class ProductDetails extends React.Component {
 
     render() {
 
-        const { productData, userData, isLoading } = this.state;
+        const { productDetails, userData, isLoading } = this.state;
 
         return (
             <Container maxWidth="lg">
                 <CssBaseline />
                 <div style={{ height: 10 }} />
-                <Grid container spacing={1}>
-                    {/* {
-                            isLoading ?
-                                <div style={{
-                                    minHeight: '50vh',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    // float: 'center'
-                                }}>
-                                    <CircularProgress />
-                                </div>
-                                :
-                        } */}
-                    <Grid xs={12}>
-                        {
-                            this.renderTopSection(productData, userData)
-                        }
+
+                {isLoading ?
+                    <div
+                        style={{
+                            display: 'flex',
+                            minHeight: '50vh',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}>
+                        <CircularProgress style={{ color: '#087059', opacity: 0.7, height: 50, width: 50 }} />
+                    </div>
+                    :
+                    <Grid container spacing={1}>
+                        <Grid xs={12}>
+                            {
+                                this.renderTopSection(productDetails, userData)
+                            }
+                        </Grid>
+                        <Grid xs={12}>
+                            <div style={{ height: 20 }} />
+                            {
+                                this.renderProductDetails(productDetails)
+                            }
+                        </Grid>
+                        <Grid xs={12}>
+                            <div style={{ height: 20 }} />
+                            {
+                                this.renderReviews()
+                            }
+                        </Grid>
                     </Grid>
-                    <Grid xs={12}>
-                        <div style={{ height: 20 }} />
-                        {
-                            this.renderProductDetails(productData)
-                        }
-                    </Grid>
-                    <Grid xs={12}>
-                        <div style={{ height: 20 }} />
-                        {
-                            this.renderReviews()
-                        }
-                    </Grid>
-                </Grid>
+                }
             </Container>
         )
     }
