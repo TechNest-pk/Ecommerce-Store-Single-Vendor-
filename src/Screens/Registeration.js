@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CssBaseline, Grid, Container, Typography, TextField, Button, Card, InputAdornment } from '@material-ui/core';
+import { CssBaseline, Grid, Container, Typography, TextField, Button, Card } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 //Icons

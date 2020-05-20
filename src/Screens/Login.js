@@ -11,9 +11,6 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 //React Router
 import { Link } from 'react-router-dom';
 
-//Axios
-import axios from 'axios';
-
 //Configs
 import firebase from '../Config/Firebase';
 

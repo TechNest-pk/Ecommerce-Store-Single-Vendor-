@@ -34,6 +34,8 @@ class App extends Component {
         userId: null,
         userEmail: null,
         userData: {},
+
+        isLoading: true,
     }
 
     componentDidMount() {
@@ -50,6 +52,7 @@ class App extends Component {
                 this.setState({
                     userId: userId,
                     userEmail: email,
+                    isLoading: false
                 }, () => {
                     this.getUser(userId);
                 });
@@ -58,6 +61,7 @@ class App extends Component {
                 this.setState({
                     userId: null,
                     userEmail: null,
+                    isLoading: false,
                 });
                 console.log('User not Logged in');
             }
@@ -83,23 +87,36 @@ class App extends Component {
 
     render() {
 
-        const { userId, userData } = this.state;
+        const { userId, userData, isLoading } = this.state;
 
         return (
             <React.Fragment>
                 <Navbar user={userId} userData={userData} />
                 <div style={{ height: 130 }} />
-                <Switch>
-                    <Route path="/" exact render={props => (<LandingPage {...props} />)} />
-                    <Route path="/login" exact render={props => (<Login {...props} />)} />
-                    <Route path="/create-account" exact render={props => (<Registeration {...props} />)} />
-                    <Route path="/user/:path" exact render={props => (<UserAccount {...props} />)} />
-                    <Route path="/user/:path/:userId" exact render={props => (<UserAccount {...props} />)} />
-                    <Route path="/categories" exact render={props => (<CategoriesDrawer {...props} />)} />
-                    <Route path="/product" exact render={props => (<ProductDetails {...props} firebaseUserId={userId} userData={userData} />)} />
-                    <Route path="/product/:prodId" exact render={props => (<ProductDetails {...props} firebaseUserId={userId} userData={userData} />)} />
+                {isLoading ?
+                    <div
+                        style={{
+                            display: 'flex',
+                            minHeight: '50vh',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}>
+                        <CircularProgress style={{ color: '#087059', opacity: 0.7, height: 50, width: 50 }} />
+                    </div>
+                    :
+                    <Switch>
+                        <Route path="/" exact render={props => (<LandingPage {...props} />)} />
+                        <Route path="/login" exact render={props => (<Login {...props} />)} />
+                        <Route path="/create-account" exact render={props => (<Registeration {...props} />)} />
+                        <Route path="/user/:path" exact render={props => (<UserAccount {...props} />)} />
+                        <Route path="/user/:path/:userId" exact render={props => (<UserAccount {...props} />)} />
+                        <Route path="/categories" exact render={props => (<CategoriesDrawer {...props} />)} />
+                        <Route path="/product" exact render={props => (<ProductDetails {...props} firebaseUserId={userId} userData={userData} />)} />
+                        <Route path="/product/:prodId" exact render={props => (<ProductDetails {...props} firebaseUserId={userId} userData={userData} />)} />
 
-                </Switch>
+                    </Switch>
+                }
             </React.Fragment >
         )
     }

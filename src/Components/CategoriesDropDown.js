@@ -1,11 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { TreeView, TreeItem } from '@material-ui/lab';
 import { Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 
-//Icons
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+ //Icons
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 // Casecading Styleheet
 import '../CasecadingStylesheets/Categories.css';

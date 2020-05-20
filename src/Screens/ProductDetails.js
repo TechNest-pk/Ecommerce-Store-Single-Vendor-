@@ -26,7 +26,7 @@ import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import { Form } from 'react-bootstrap';
 
 //Sweetalert
-import Swal from 'sweetalert2';
+import swal from 'sweetalert2';
 
 //React Image Gallery
 import ImageGallery from 'react-image-gallery';
@@ -47,11 +47,17 @@ import '../App.css';
 //Components
 import Description from '../Components/HtmlViewer';
 
+const formatter = new Intl.NumberFormat('en-US', {
+    // style: 'currency',
+    // currency: 'PKR',
+    minimumFractionDigits: 0
+})
+
 class ProductDetails extends React.Component {
 
     state = {
         quantity: 1,
-        userData: {},
+        userInfo: null,
         productDetails: {},
         description: '',
 
@@ -59,9 +65,32 @@ class ProductDetails extends React.Component {
     }
 
     componentDidMount() {
-        //     this.getUserDetails();
+        const { userData, firebaseUserId } = this.props;
+        const { userInfo, } = this.state;
+
+        //Get Prdouct Details
         this.getProductDetails();
 
+        //Check User
+        if (!userInfo) {
+            this.setState({
+                userInfo: userData
+            })
+        }
+
+    }
+
+    componentDidUpdate(prevProps) {
+        const { userData } = this.props;
+
+        if (prevProps !== this.props) {
+
+            if (userData) {
+                this.setState({
+                    userInfo: userData
+                })
+            }
+        }
     }
 
     getProductDetails = () => {
@@ -86,45 +115,17 @@ class ProductDetails extends React.Component {
             });
     }
 
-    // getUserDetails = () => {
-
-    //     firebase.auth().onAuthStateChanged(user => {
-    //         if (user) {
-    //             const userID = firebase.auth().currentUser.uid;
-
-    //             axios({
-    //                 url: 'http://localhost:8000/user/get-current-user',
-    //                 method: "POST",
-    //                 data: { userID: userID },
-    //             }).then(response => {
-    //                 this.setState({
-    //                     userData: response.data.data,
-    //                     isLoading: false,
-    //                 }, () => {
-    //                     console.log('user mila hai', this.state.userData)
-    //                 })
-    //             }).catch(err => {
-    //                 //handle error
-    //                 console.log(err);
-    //             });
-    //         }
-    //         else {
-    //             // User not logged in.
-    //         }
-    //     });
-    // }
-
     // handleBuyNow = () => {
-    //     const { userData, productDetails, quantity } = this.state;
+    //     const { userInfo, productDetails, quantity } = this.state;
 
-    //     // const userID = userData._id;
+    //     // const userID = userInfo._id;
     //     let msg = 'Item added in cart';
 
     //     axios({
     //         url: 'http://localhost:8000/products/add-to-cart',
     //         method: "POST",
     //         data: {
-    //             userID: userData._id,
+    //             userID: userInfo._id,
     //             prodID: productDetails._id,
     //             quantity: quantity,
     //         },
@@ -138,65 +139,29 @@ class ProductDetails extends React.Component {
     //     });
     // }
 
-    // handleAddToCart = () => {
-    //     const { userData, productDetails, quantity } = this.state;
+    handleAddToCart = () => {
+        const { userInfo, productDetails, quantity } = this.state;
+        console.log(userInfo)
+        axios({
+            url: `${serverUrl}products/add-to-cart`,
+            method: "POST",
+            data: {
+                userId: userInfo._id,
+                prodId: productDetails._id,
+                quantity: quantity,
+            },
+        }).then(response => {
+            swal.fire({
+                icon: 'success',
+                title: 'Ecommerce Store',
+                text: 'Item added in Cart'
+            })
 
-    //     // const userID = userData._id;
-    //     let msg = 'Item added in cart';
-
-    //     axios({
-    //         url: 'http://localhost:8000/products/add-to-cart',
-    //         method: "POST",
-    //         data: {
-    //             userID: userData._id,
-    //             prodID: productDetails._id,
-    //             quantity: quantity,
-    //         },
-    //     }).then(response => {
-
-    //         Swal(msg);
-
-    //     }).catch(err => {
-    //         //handle error
-    //         console.log(err);
-    //     });
-    // }
-
-    // handleQuantity = (opt) => {
-
-    //     if (opt === 'inc') {
-    //         this.setState({
-    //             quantity: this.state.quantity + 1,
-    //         })
-    //     }
-    //     else if (opt === 'dec') {
-    //         this.setState({
-    //             quantity: this.state.quantity - 1,
-    //         })
-    //     }
-
-    // }
-
-    // handleReviews = () => {
-
-    //     const { productDetails, } = this.state;
-
-    //     axios({
-    //         url: 'http://localhost:8000/products/get-reviews',
-    //         method: "POST",
-    //         data: {
-    //             prodID: productDetails._id,
-
-    //         },
-    //     }).then(response => {
-
-
-    //     }).catch(err => {
-    //         //handle error
-    //         console.log(err);
-    //     });
-
-    // }
+        }).catch(err => {
+            //handle error
+            console.log(err);
+        });
+    }
 
     renderTopSection = (prod, user) => {
 
@@ -235,7 +200,7 @@ class ProductDetails extends React.Component {
                             </Grid>
                             <Grid item lg={8} md={8} sm={8} xs={8}>
                                 <div style={{ paddingLeft: 20, paddingTop: 20 }}>
-                                    <Typography variant="h5">Samsung S6</Typography>
+                                    <Typography variant="h5">{prod.title}</Typography>
                                     <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>
                                         <Rating name="read-only" style={{ fontSize: 17 }} value={4.2} readOnly />
                                     </div>
@@ -259,7 +224,7 @@ class ProductDetails extends React.Component {
                                     </div>
                                     <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>
                                         <Link >
-                                            <Typography>Samsung</Typography>
+                                            <Typography>{prod.brand}</Typography>
                                         </Link>
                                     </div>
                                     <div style={{
@@ -272,7 +237,7 @@ class ProductDetails extends React.Component {
                                         verticalAlign: 'middle',
                                     }} />
                                     <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                                        <Link >
+                                        <Link > {/* yahan km krna hai */}
                                             <Typography>Other Brands</Typography>
                                         </Link>
                                     </div>
@@ -280,7 +245,7 @@ class ProductDetails extends React.Component {
                                 <div style={{ height: 20 }} />
                                 <hr />
                                 <div style={{ paddingLeft: '20px', paddingTop: '20px', color: '#666666' }}>
-                                    <Typography variant="h4" style={{ color: 'green' }}>Rs.5,000</Typography>
+                                    <Typography variant="h4" style={{ color: 'green' }}>{formatter.format(prod.price)}</Typography>
                                     <br />
                                     <Typography variant="h6" style={{ color: 'inherit' }} color="textSecondary" component="h5">
                                         Quantity:
@@ -291,7 +256,7 @@ class ProductDetails extends React.Component {
                                         style={{ height: 36, width: 64 }}
                                         onClick={() => {
                                             this.setState({
-                                                quantity: this.state.quantity - 1,
+                                                quantity: quantity - 1,
                                             })
                                         }}>
                                         -
@@ -303,7 +268,7 @@ class ProductDetails extends React.Component {
                                         style={{ height: 36, width: 64 }}
                                         onClick={() => {
                                             this.setState({
-                                                quantity: this.state.quantity + 1,
+                                                quantity: quantity + 1,
                                             })
                                         }}>
                                         +
@@ -338,7 +303,7 @@ class ProductDetails extends React.Component {
                                     <ListItemText secondary={
                                         <React.Fragment>
                                             {
-                                                !user ? <Typography component="p" variant="p" color="textPrimary">
+                                                user ? <Typography component="p" variant="p" color="textPrimary">
                                                     {user.address}
                                                 </Typography>
                                                     :
@@ -359,6 +324,7 @@ class ProductDetails extends React.Component {
                                             <Typography component="p" variant="p" color="textPrimary" style={{ marginTop: 10 }}>
                                                 Home Delivery
                                             </Typography>
+                                            {/* ye dekhna hai bad me */}
                                             <span style={{ fontSize: '12px', color: '#9e9e9e' }}>1 to 3 days</span>
                                         </React.Fragment>}
                                     />
@@ -410,7 +376,7 @@ class ProductDetails extends React.Component {
                                 </ListItem>
                                 <ListItem>
                                     <ListItemIcon style={{ minWidth: '40px', width: '40px' }}>
-                                        <VerifiedUserIcon />
+                                        <VerifiedUserIcon style={{ color: 'green' }} />
                                     </ListItemIcon>
                                     <ListItemText secondary={
                                         <React.Fragment>
@@ -446,33 +412,26 @@ class ProductDetails extends React.Component {
                             Description:
                             </Typography>
                         {/* <Typography variant="p" style={{ color: 'black' }} color="textSecondary" component="p"> */}
-                        <Description overview={prod.description} />
+                        <Description overview={prod.overview} />
                         {/* </Typography> */}
                     </Grid>
-                    <Grid item lg={4} md={4} sm={6} xs={12}>
-                        <Typography variant="h6" style={{ color: '#000' }} color="textSecondary" component="h5">
-                            Brand
-                            </Typography>
-                        <Typography variant="p" color="textSecondary" component="p">
-                            {/* {prod.brand} */} Samsung
-                            </Typography>
-                    </Grid>
-                    <Grid item lg={4} md={4} sm={6} xs={12}>
-                        <Typography variant="h6" style={{ color: '#000' }} color="textSecondary" component="h5">
-                            Memory
-                            </Typography>
-                        <Typography variant="p" color="textSecondary" component="p">
-                            111
-                            </Typography>
-                    </Grid>
-                    <Grid item lg={4} md={4} sm={6} xs={12}>
-                        <Typography variant="h6" style={{ color: '#000' }} color="textSecondary" component="h5">
-                            Camera
-                            </Typography>
-                        <Typography variant="p" color="textSecondary" component="p">
-                            111212
-                            </Typography>
-                    </Grid>
+                </Grid>
+                <Grid container spacing={3}>
+                    {
+                        prod.bulletPoints &&
+                        prod.bulletPoints.map((specification, index) => {
+                            return (
+                                <Grid key={index} item lg={3} md={4} sm={6} xs={6}>
+                                    {/* <Typography variant="h6" style={{ color: '#000' }} color="textSecondary" component="h5">
+                                    specification
+                            </Typography> */}
+                                    <Typography variant="p" color="textSecondary" component="p">
+                                        {specification}
+                                    </Typography>
+                                </Grid>
+                            )
+                        })
+                    }
                 </Grid>
             </div>
         )
@@ -551,7 +510,7 @@ class ProductDetails extends React.Component {
 
     render() {
 
-        const { productDetails, userData, isLoading } = this.state;
+        const { productDetails, userInfo, isLoading } = this.state;
 
         return (
             <Container maxWidth="lg">
@@ -573,7 +532,7 @@ class ProductDetails extends React.Component {
                     <Grid container spacing={1}>
                         <Grid xs={12}>
                             {
-                                this.renderTopSection(productDetails, userData)
+                                this.renderTopSection(productDetails, userInfo)
                             }
                         </Grid>
                         <Grid xs={12}>
