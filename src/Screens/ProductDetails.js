@@ -8,7 +8,7 @@ import axios from 'axios';
 
 //Config
 import firebase from '../Config/Firebase';
-import { serverUrl } from '../Config/Backend';
+import { baseUrl } from '../Config/api';
 
 //Material UI
 import { withStyles } from '@material-ui/core/styles';
@@ -97,7 +97,7 @@ class ProductDetails extends React.Component {
         const prodId = this.props.match.params.prodId;
 
         axios({
-            url: `${serverUrl}products/get-details/${prodId}`,
+            url: `${baseUrl}products/get-details/${prodId}`,
             method: "GET",
         })
             .then(response => {
@@ -141,7 +141,7 @@ class ProductDetails extends React.Component {
 
         if (userInfo) {
             axios({
-                url: `${serverUrl}products/add-to-cart`,
+                url: `${baseUrl}products/add-to-cart`,
                 method: "POST",
                 data: {
                     userId: userInfo._id,

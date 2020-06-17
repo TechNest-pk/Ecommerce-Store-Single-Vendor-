@@ -11,7 +11,7 @@ import {
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 //Config
-import { serverUrl } from './Config/Backend';
+import { baseUrl } from './Config/api';
 import firebase from './Config/Firebase';
 
 //Axios
@@ -68,7 +68,7 @@ class App extends Component {
     getUser = (userId) => {
         console.log('chala')
         axios({
-            url: `${serverUrl}user/get-current-user`,
+            url: `${baseUrl}user/get-current-user`,
             method: "POST",
             data: { userId: userId }
         })

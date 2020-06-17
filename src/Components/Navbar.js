@@ -8,7 +8,7 @@ import { Grid, Container, Typography, AppBar, Toolbar, Button, Menu, Paper, Divi
 import { withStyles } from '@material-ui/core/styles';
 
 //Config
-import { serverUrl } from '../Config/Backend';
+import { baseUrl } from '../Config/api';
 import firebase from '../Config/Firebase';
 
 //Axios
@@ -192,7 +192,7 @@ class Appbar extends Component {
     getCategories = () => {
 
         axios({
-            url: `${serverUrl}categories/get-appbar-categories`,
+            url: `${baseUrl}categories/get-appbar-categories`,
             method: 'GET',
         })
             .then(response => {
@@ -217,7 +217,7 @@ class Appbar extends Component {
 
     // getUser = (userId) => {
     //     axios({
-    //         url: `${serverUrl}user/get-current-user`,
+    //         url: `${baseUrl}user/get-current-user`,
     //         method: "POST",
     //         data: { userId: userId }
     //     })

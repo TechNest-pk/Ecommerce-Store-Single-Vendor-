@@ -1,6 +1,6 @@
 # Ecommerce Store (Single Vendor) (Front-End)
 
-#### Node JS Server => [Link](https://github.com/TechNest-pk/Ecommerce-Store-Single-Vendor-Backend)
+#### Node JS Server => [Link](https://github.com/TechNest-pk/Ecommerce-Store-Single-Vendor-api)
 
 #### (Under Development Phase. All features might not be present at the momment)
 

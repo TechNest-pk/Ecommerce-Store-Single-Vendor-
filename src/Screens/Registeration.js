@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 //firebase 
 import firebase from '../Config/Firebase';
-import { serverUrl } from '../Config/Backend';
+import { baseUrl } from '../Config/api';
 
 //Axios
 import axios from 'axios';
@@ -51,7 +51,7 @@ class Register extends Component {
             firebase.auth().createUserWithEmailAndPassword(username, password)
                 .then(() => {
                     axios({
-                        url: `${serverUrl}user/user-register`,
+                        url: `${baseUrl}user/user-register`,
                         method: "POST",
                         data: {
                             email: username,

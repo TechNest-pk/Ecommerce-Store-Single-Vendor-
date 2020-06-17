@@ -4,10 +4,6 @@
 .firebaserc
 firebase.json
 
-#files and folders
-/src/Config/Firebase.js
-/src/Config/Backend.js
-
 # dependencies
 /node_modules
 /.pnp

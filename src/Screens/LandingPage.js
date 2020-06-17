@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 //Config
-import { serverUrl } from '../Config/Backend';
+import { baseUrl } from '../Config/api';
 import firebase from '../Config/Firebase';
 
 //Axios
@@ -60,7 +60,7 @@ class LandingPage extends Component {
     getLandingPageItems = () => {
 
         axios({
-            url: `${serverUrl}products/get-landing-page-products`,
+            url: `${baseUrl}products/get-landing-page-products`,
             method: 'GET',
         })
             .then(response => {
