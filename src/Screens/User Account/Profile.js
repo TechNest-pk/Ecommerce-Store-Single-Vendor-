@@ -37,7 +37,7 @@ class App extends React.Component {
 
         if (userID) {
             console.log(userID, 'if chal raha hai')
-            axios(`http://localhost:8000/user/get-user/${userID}`)
+            axios(`http://localhost:8081/user/get-user/${userID}`)
                 .then(response => {
                     this.setState({
                         data: response.data.data,
@@ -151,7 +151,7 @@ class App extends React.Component {
 
     render() {
 
-        const { showProfile, showEditProfile, showOrders, showReviews, path, data } = this.state;
+        const { showProfile, showEditProfile, showOrders, path, data } = this.state;
 
         return (
 

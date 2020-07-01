@@ -1,55 +1,42 @@
 import React, { Component, Fragment } from 'react';
-import { CssBaseline, Grid, Container, Typography, TextField, Button, Card, InputAdornment } from '@material-ui/core';
+//Material UI
+import { CssBaseline, Grid, Container, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
 //Config
 import { baseUrl } from '../Config/api';
-import firebase from '../Config/Firebase';
-
 //Axios
 import axios from 'axios';
 
 //Assets
-import s6 from '../Assets/Images/s6.jpg'
-import s10 from '../Assets/Images/s10.jpeg'
-import a30 from '../Assets/Images/a30.jpeg'
-import realme5 from '../Assets/Images/realme5.jpg'
-import oppof7 from '../Assets/Images/oppof7.jpg'
 import banner1 from '../Assets/Images/banner1.jpg'
 import banner2 from '../Assets/Images/banner2.jpg'
-
-// Casecading Styleheet
-import '../App.css';
-
-
 //Components
 import Products from '../Components/ProductCard';
 import Banner from '../Components/Banners';
 import ListProd from '../Components/HorizontalScrollingMenu';
 
-const prodArr = [
-    { name: 'Samsung S6', image: s6 },
-    { name: 'Samsung S10', image: s10 },
-    { name: 'Samsung A30', image: a30 },
-    { name: 'Realme 5', image: realme5 },
-    { name: 'Oppo F7', image: oppof7 },
-    { name: 'Samsung S6', image: s6 },
-    { name: 'Realme 5', image: realme5 },
-    { name: 'Samsung S10', image: s10 },
-    { name: 'Samsung A30', image: a30 },
-    { name: 'Oppo F7', image: oppof7 },
-    { name: 'Samsung S10', image: s10 },
-    { name: 'Samsung A30', image: a30 },
-    { name: 'Oppo F7', image: oppof7 },
+// const prodArr = [
+//     { name: 'Samsung S6', image: s6 },
+//     { name: 'Samsung S10', image: s10 },
+//     { name: 'Samsung A30', image: a30 },
+//     { name: 'Realme 5', image: realme5 },
+//     { name: 'Oppo F7', image: oppof7 },
+//     { name: 'Samsung S6', image: s6 },
+//     { name: 'Realme 5', image: realme5 },
+//     { name: 'Samsung S10', image: s10 },
+//     { name: 'Samsung A30', image: a30 },
+//     { name: 'Oppo F7', image: oppof7 },
+//     { name: 'Samsung S10', image: s10 },
+//     { name: 'Samsung A30', image: a30 },
+//     { name: 'Oppo F7', image: oppof7 },
 
-]
+// ]
 
 class LandingPage extends Component {
 
     state = {
         items: [],
-
         isLoading: true,
     }
 
@@ -60,7 +47,7 @@ class LandingPage extends Component {
     getLandingPageItems = () => {
 
         axios({
-            url: `${baseUrl}products/get-landing-page-products`,
+            url: `${baseUrl}/products/get-landing-page-products`,
             method: 'GET',
         })
             .then(response => {

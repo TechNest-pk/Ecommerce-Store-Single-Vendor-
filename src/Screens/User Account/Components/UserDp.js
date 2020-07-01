@@ -1,10 +1,5 @@
 import React from 'react';
-
-// React Router
-import { Link } from 'react-router-dom';
-
 //Material UI
-import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 //Asstes
@@ -16,7 +11,7 @@ export default function Navs(props) {
 
     return (
         <div className={classes.imageDiv}>
-            <img src={img} alt="My Profile Picture" className={classes.dpForDesktop} />
+            <img src={img} alt="pic" className={classes.dpForDesktop} />
         </div>
     )
 }

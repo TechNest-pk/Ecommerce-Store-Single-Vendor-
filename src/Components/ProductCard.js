@@ -35,11 +35,11 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const formatter = new Intl.NumberFormat('en-US', {
-    // style: 'currency',
-    // currency: 'PKR',
-    minimumFractionDigits: 0
-})
+// const formatter = new Intl.NumberFormat('en-US', {
+//     // style: 'currency',
+//     // currency: 'PKR',
+//     minimumFractionDigits: 0
+// })
 
 export default function ProductCard(props) {
 

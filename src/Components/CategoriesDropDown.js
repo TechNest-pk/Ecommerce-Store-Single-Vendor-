@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import { Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 
  //Icons
@@ -9,16 +9,16 @@ import { Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 // Casecading Styleheet
 import '../CasecadingStylesheets/Categories.css';
 
-const useStyles = makeStyles({
-    root: {
-        height: 240,
-        flexGrow: 1,
-        maxWidth: 400,
-    },
-});
+// const useStyles = makeStyles({
+//     root: {
+//         height: 240,
+//         flexGrow: 1,
+//         maxWidth: 400,
+//     },
+// });
 
 export default function CategoriesTree() {
-    const classes = useStyles();
+    // const classes = useStyles();
 
     return (
         <div>

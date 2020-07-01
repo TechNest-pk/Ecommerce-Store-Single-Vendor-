@@ -93,7 +93,7 @@ class App extends React.Component {
 
     render() {
 
-        const { classes, user } = this.props;
+        const { classes } = this.props;
         const { name, email, contact, gender, birthday } = this.state;
 
         return (

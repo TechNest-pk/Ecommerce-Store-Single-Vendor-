@@ -4,21 +4,13 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 //Material UI
-import { Typography, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
-//Icons
-import CloseIcon from '@material-ui/icons/Close';
-import MenuIcon from '@material-ui/icons/Menu';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import SearchIcon from '@material-ui/icons/Search';
-import { FaRegUserCircle, FaMobileAlt, FaTshirt } from 'react-icons/fa';
-import { MdReceipt, MdRateReview } from 'react-icons/md';
-import { GiHelp, GiBallerinaShoes } from 'react-icons/gi';
-import { FiGift, } from 'react-icons/fi';
+import { FaMobileAlt,  } from 'react-icons/fa';
 
 function App(props) {
 

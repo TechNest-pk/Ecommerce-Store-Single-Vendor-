@@ -1,30 +1,20 @@
-import React, { Component } from 'react';
-
-//React Roter
-import { Link } from 'react-router-dom';
-
-//Axios
-import axios from 'axios';
-
-//Config
-import firebase from '../Config/Firebase';
-import { baseUrl } from '../Config/api';
-
+import React from 'react';
 //Material UI
 import { withStyles } from '@material-ui/core/styles';
-import { Container, CssBaseline, Grid, Card, CardMedia, CardActions, Box, Typography, Button, Switch, FormControlLabel, List, ListItem, ListItemIcon, ListItemText, Divider, Chip, Checkbox, CircularProgress } from '@material-ui/core';
+import { Container, CssBaseline, Grid, Card, Box, Typography, Button, ListItem, ListItemIcon, ListItemText, Divider, CircularProgress } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
-
+//React Roter
+import { Link } from 'react-router-dom';
+//Axios
+import axios from 'axios';
+//Config
+import { baseUrl } from '../Config/api';
 // Icons
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import HouseIcon from '@material-ui/icons/House';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
-
-//Bootstrap
-import { Form } from 'react-bootstrap';
-
 //Sweetalert
 import swal from 'sweetalert2';
 
@@ -35,14 +25,6 @@ import "react-image-gallery/styles/css/image-gallery.css";
 //Assets
 import s6 from '../Assets/Images/s6.jpg'
 import s10 from '../Assets/Images/s10.jpeg'
-import a30 from '../Assets/Images/a30.jpeg'
-import realme5 from '../Assets/Images/realme5.jpg'
-import oppof7 from '../Assets/Images/oppof7.jpg'
-import banner1 from '../Assets/Images/banner1.jpg'
-import banner2 from '../Assets/Images/banner2.jpg'
-
-// Casecading Styleheet
-import '../App.css';
 
 //Components
 import Description from '../Components/HtmlViewer';
@@ -66,7 +48,6 @@ class ProductDetails extends React.Component {
 
     componentDidMount() {
         const { userData } = this.props;
-        const { userInfo } = this.state;
 
         //Get Prdouct Details
         this.getProductDetails();
@@ -81,7 +62,6 @@ class ProductDetails extends React.Component {
 
     componentDidUpdate(prevProps) {
         const { userData } = this.props;
-        const { userInfo } = this.state;
 
         if (prevProps !== this.props) {
             console.log('props change hui')
@@ -97,7 +77,7 @@ class ProductDetails extends React.Component {
         const prodId = this.props.match.params.prodId;
 
         axios({
-            url: `${baseUrl}products/get-details/${prodId}`,
+            url: `${baseUrl}/products/get-details/${prodId}`,
             method: "GET",
         })
             .then(response => {
@@ -119,7 +99,7 @@ class ProductDetails extends React.Component {
     //     let msg = 'Item added in cart';
 
     //     axios({
-    //         url: 'http://localhost:8000/products/add-to-cart',
+    //         url: `${baseUrl}/products/add-to-cart`,
     //         method: "POST",
     //         data: {
     //             userID: userInfo._id,
@@ -141,7 +121,7 @@ class ProductDetails extends React.Component {
 
         if (userInfo) {
             axios({
-                url: `${baseUrl}products/add-to-cart`,
+                url: `${baseUrl}/products/add-to-cart`,
                 method: "POST",
                 data: {
                     userId: userInfo._id,
@@ -403,7 +383,7 @@ class ProductDetails extends React.Component {
     }
 
     renderProductDetails = (prod) => {
-        const { classes } = this.props;
+        // const { classes } = this.props;
 
         return (
             <div

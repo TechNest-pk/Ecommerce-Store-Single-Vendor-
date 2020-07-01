@@ -4,7 +4,7 @@ import React, { Component, Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 //Material UI
-import { Grid, Container, Typography, AppBar, Toolbar, Button, Menu, Paper, Divider, List, ListItem, ListItemIcon, ListItemText, FormControl, OutlinedInput, InputAdornment, Avatar, IconButton, Badge, TextField } from '@material-ui/core';
+import { Grid, Container, Typography, AppBar, Toolbar, Button, Menu, Divider, List, ListItem, ListItemIcon, ListItemText, FormControl, OutlinedInput, InputAdornment, Avatar, IconButton, Badge } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 //Config
@@ -16,23 +16,15 @@ import axios from 'axios';
 
 //Icons
 import SearchIcon from '@material-ui/icons/Search';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { FiGift, FiShoppingCart } from 'react-icons/fi';
-import { FaMobileAlt, FaTshirt, FaFonticonsFi } from 'react-icons/fa';
-import { GiBallerinaShoes } from 'react-icons/gi';
-import { MdReceipt, MdRateReview } from 'react-icons/md';
+import { FiShoppingCart } from 'react-icons/fi';
+import { FaMobileAlt } from 'react-icons/fa';
+import { MdReceipt } from 'react-icons/md';
 
 // Components
 import CategoriesButton from './CategoriesDropDown';
 import DrawerMenu from './MobileMenuDrawer';
-
-//Sweetalert
-import swal from 'sweetalert2';
-
-// Casecading Styleheet
-import '../App.css';
 
 const StyledBadge1 = withStyles(theme => ({
     badge: {
@@ -236,7 +228,7 @@ class Appbar extends Component {
 
     handleKeyPress(target, value) {
         const { history } = this.props;
-        if (target.charCode == 13) {
+        if (target.charCode === 13) {
             if (value.length > 0) {
                 history.push(`/s/${value}`);
             }
@@ -252,8 +244,8 @@ class Appbar extends Component {
     }
 
     renderAccountMenu = () => {
-        const { classes, user, categories } = this.props;
-        const { isUserLoggedIn, anchorEl, cartQuantity, keyword } = this.state;
+        const { classes } = this.props;
+        const { anchorEl, cartQuantity } = this.state;
 
         return (
             <div style={{ float: 'right' }}>
@@ -341,8 +333,8 @@ class Appbar extends Component {
     }
 
     renderNavigationList = () => {
-        const { classes, user, categories } = this.props;
-        const { isUserLoggedIn, anchorEl, cartQuantity, keyword, appBarCategories } = this.state;
+        const { classes } = this.props;
+        const { appBarCategories } = this.state;
 
         return (
             <Toolbar className={classes.navToolbar}>
@@ -366,54 +358,6 @@ class Appbar extends Component {
                                 )
                             })
                         }
-                        {/* <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <ListItem className={classes.ListItem}>
-                                <ListItemIcon className={classes.listItemIcon}>
-                                    <FaTshirt />
-                                </ListItemIcon>
-                                <ListItemText primary="Shirts" />
-                            </ListItem>
-                        </Link>
-                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <ListItem className={classes.ListItem}>
-                                <ListItemIcon className={classes.listItemIcon}>
-                                    <GiBallerinaShoes />
-                                </ListItemIcon>
-                                <ListItemText primary="Shoes" />
-                            </ListItem>
-                        </Link>
-                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <ListItem className={classes.ListItem}>
-                                <ListItemIcon className={classes.listItemIcon}>
-                                    <FiGift />
-                                </ListItemIcon>
-                                <ListItemText primary="Discounts" />
-                            </ListItem>
-                        </Link>
-                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <ListItem className={classes.ListItem}>
-                                <ListItemIcon className={classes.listItemIcon}>
-                                    <GiBallerinaShoes />
-                                </ListItemIcon>
-                                <ListItemText primary="Shoes" />
-                            </ListItem>
-                        </Link>
-                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <ListItem className={classes.ListItem}>
-                                <ListItemIcon className={classes.listItemIcon}>
-                                    <FiGift />
-                                </ListItemIcon>
-                                <ListItemText primary="Discounts" />
-                            </ListItem>
-                        </Link>
-                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <ListItem className={classes.ListItem}>
-                                <ListItemIcon className={classes.listItemIcon}>
-                                    <FiGift />
-                                </ListItemIcon>
-                                <ListItemText primary="Discounts" />
-                            </ListItem>
-                        </Link> */}
                     </List>
                 </div>
             </Toolbar>
@@ -421,8 +365,8 @@ class Appbar extends Component {
     }
 
     render() {
-        const { classes, user } = this.props;
-        const { isUserLoggedIn, anchorEl, cartQuantity, keyword } = this.state;
+        const { classes } = this.props;
+        const { isUserLoggedIn, keyword } = this.state;
 
         return (
             <div className={classes.root}>

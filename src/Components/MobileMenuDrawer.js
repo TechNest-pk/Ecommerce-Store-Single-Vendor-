@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-
 //React Router
 import { withRouter, Link } from 'react-router-dom';
-
 //Material UI
 import { List, ListItem, ListItemIcon, ListItemText, ListSubheader, Typography, Button, Dialog, Divider, AppBar, Toolbar, IconButton, Slide, FormControl, OutlinedInput, InputAdornment } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-
 //Icons
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -16,9 +13,6 @@ import { FaRegUserCircle, FaMobileAlt, FaTshirt } from 'react-icons/fa';
 import { MdReceipt, MdRateReview } from 'react-icons/md';
 import { GiHelp, GiBallerinaShoes } from 'react-icons/gi';
 import { FiGift, FiSettings, FiShoppingCart } from 'react-icons/fi';
-
-// Casecading Styleheet
-import '../App.css';
 
 const styles = theme => ({
     appBar: {
@@ -65,7 +59,7 @@ class Drawer extends Component {
 
     handleKeyPress = (target, value) => {
 
-        if (target.charCode == 13) {
+        if (target.charCode === 13) {
             if (value.length > 0) {
                 this.props.history.push(`/s/${value}`);
             }

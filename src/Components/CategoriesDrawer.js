@@ -1,27 +1,16 @@
 import React, { Component } from 'react';
-
 //React Router
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 //Material UI
-import { List, ListItem, ListItemIcon, ListItemText, ListSubheader, Typography, Button, Dialog, Divider, AppBar, Toolbar, IconButton, Slide, FormControl, OutlinedInput, InputAdornment } from '@material-ui/core';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { Typography, Dialog, AppBar, Toolbar, IconButton, Slide } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
 //Icons
 import CloseIcon from '@material-ui/icons/Close';
-import MenuIcon from '@material-ui/icons/Menu';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import SearchIcon from '@material-ui/icons/Search';
-import { FaRegUserCircle, FaMobileAlt, FaTshirt } from 'react-icons/fa';
-import { MdReceipt, MdRateReview } from 'react-icons/md';
-import { GiHelp, GiBallerinaShoes } from 'react-icons/gi';
-import { FiGift, } from 'react-icons/fi';
 
 //Components
 import CategoriesPanel from './CategoriesExpansionPanel';
-
-// Casecading Styleheet
-import '../App.css';
 
 const styles = theme => ({
     appBar: {

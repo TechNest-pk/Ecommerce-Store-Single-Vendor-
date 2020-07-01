@@ -1,20 +1,7 @@
 import React from 'react';
-
-// React Router
-import { Link } from 'react-router-dom';
-
 //Material UI
-import { Grid, Card, Paper, ListItem, ListItemText, IconButton, Typography, Button, Divider, Chip } from '@material-ui/core';
+import { Grid, Card, Paper, Typography, Button, Divider, Chip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
-//Bootstrap
-import { Table } from 'react-bootstrap';
-
-//Icons
-import DoneIcon from '@material-ui/icons/Done';
-
-//Cascading Stylesheet
-import '../../../App.css'
 
 //Moment
 // import moment from 'moment';
@@ -51,7 +38,7 @@ import '../../../App.css'
 // }
 
 export default function Orders(props) {
-    const { orders } = props;
+    // const { orders } = props;
     const classes = styles();
 
     return (
@@ -129,7 +116,6 @@ export default function Orders(props) {
             </div>
         </Card >
     );
-
 }
 
 const styles = makeStyles(theme => ({

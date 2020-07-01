@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { CssBaseline, Grid, Container, Typography, TextField, Button, Card } from '@material-ui/core';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 //Icons
 import VisibilityIcon from '@material-ui/icons/Visibility';

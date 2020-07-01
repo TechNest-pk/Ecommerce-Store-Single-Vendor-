@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 //React Router
 import {
     Switch,
@@ -7,19 +6,14 @@ import {
     withRouter
 } from "react-router-dom";
 
-//Material UI
-import CircularProgress from '@material-ui/core/CircularProgress';
-
 //Config
 import { baseUrl } from './Config/api';
 import firebase from './Config/Firebase';
-
 //Axios
 import axios from 'axios';
 
 //Casecading Stylesheet
 import './App.css';
-
 //Screens
 import LandingPage from './Screens/LandingPage'
 import Login from './Screens/Login';
@@ -68,7 +62,7 @@ class App extends Component {
     getUser = (userId) => {
         console.log('chala')
         axios({
-            url: `${baseUrl}user/get-current-user`,
+            url: `${baseUrl}/user/get-current-user`,
             method: "POST",
             data: { userId: userId }
         })
@@ -85,7 +79,7 @@ class App extends Component {
 
     render() {
 
-        const { userId, userData, isLoading } = this.state;
+        const { userId, userData } = this.state;
         console.log(userData);
         return (
             <React.Fragment>
