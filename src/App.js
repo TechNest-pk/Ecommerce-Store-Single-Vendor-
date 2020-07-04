@@ -18,7 +18,7 @@ import './App.css';
 import LandingPage from './Screens/LandingPage'
 import Login from './Screens/Login';
 import Registeration from './Screens/Registeration';
-import ProductDetails from './Screens/ProductDetails';
+import ProductDetails from './Screens/Product Details/Index';
 import UserAccount from './Screens/User Account/Profile';
 
 //Components

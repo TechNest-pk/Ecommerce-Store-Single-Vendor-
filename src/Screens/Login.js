@@ -127,21 +127,13 @@ class Login extends Component {
         const { showPassword, passwordChar } = this.state;
 
         return (
-            <Container
-                maxWidth="sm"
-                style={{
-                    // display: 'flex',
-                    // minHeight: '100vh',
-                    // flexDirection: 'column',
-                    // alignItems: 'center',
-                    // justifyContent: 'center',
-                    // fontFamily: '"Noto Sans KR", sans-serif',
-                }}>
+            <Container maxWidth="xs">
                 <CssBaseline />
-                <Card style={{ padding: 50, paddingLeft: 100, paddingRight: 100 }}>
-                    <Typography variant="h3" style={{ textAlign: 'center', marginBottom: 15 }}>
+                <Card className={classes.card}>
+                    <Typography variant="h3" style={{ textAlign: 'center' }}>
                         Login
                     </Typography>
+                    <div style={{ height: 30 }} />
                     <TextField
                         className={classes.textField}
                         variant="outlined"
@@ -210,8 +202,8 @@ class Login extends Component {
                         variant="contained"
                         style={{
                             color: 'white',
-                            // textTransform: 'capitalize',
-                            backgroundColor: '#087059'
+                            backgroundColor: '#087059',
+                            marginTop: 10,
                         }}
                         onClick={this.loginHandler}
                     >
@@ -224,7 +216,7 @@ class Login extends Component {
                     }}>
                         Create Account
                     </Link>
-                    <div style={{ height: 15 }} />
+                    <div style={{ height: 25 }} />
                     <Grid container spacing={1}>
                         <Grid item xs={6}>
                             <Button
@@ -268,6 +260,12 @@ class Login extends Component {
 }
 
 const styles = theme => ({
+    card: {
+        padding: 30,
+        [theme.breakpoints.up('md')]: {
+            padding: '50px 70px 50px'
+        },
+    },
     textField: {
         backgroundColor: 'white',
         color: 'black',
