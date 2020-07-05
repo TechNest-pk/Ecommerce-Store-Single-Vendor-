@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 //Axios
 import axios from 'axios';
 //Sweetalerts
-import swal from 'sweetalert2';
+// import swal from 'sweetalert2';
 
 // Config
 // import firebase from '../../Config/Firebase';
@@ -186,7 +186,7 @@ class Cart extends Component {
                                                     width: '100%',
                                                 }}>
                                                     {value.productId.pictures && <Link to={`/products/${value.productId._id}`}>
-                                                        <img style={{ height: 218, width: 242 }} src={value.productId.pictures[0]} />
+                                                        <img style={{ height: 218, width: 242 }} src={value.productId.pictures[0]} alt="pic" />
                                                     </Link>}
                                                 </div>
                                             </Grid>
@@ -209,7 +209,7 @@ class Cart extends Component {
                                                 </Typography> */}
                                                 <br />
                                                 <Grid container>
-                                                    {/* <QuantitySelect value={value.quantity} /> */}
+                                                    <QuantitySelect value="1" />
                                                     <Button style={{ height: 36, width: 100, marginTop: 8 }} onClick={() => this.deleteFromCart(value.productId._id)} variant='outlined'>Delete</Button>
                                                 </Grid>
                                             </Grid>

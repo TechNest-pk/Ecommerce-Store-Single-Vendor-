@@ -13,7 +13,6 @@ import './App.css';
 import Routes from './Routes/Routes';
 //Components
 import Navbar from './Components/Navbar';
-import CategoriesDrawer from './Components/CategoriesDrawer';
 
 class App extends Component {
 

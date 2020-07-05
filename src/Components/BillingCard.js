@@ -41,7 +41,6 @@ const formatter = new Intl.NumberFormat('en-US', {
 
 export default function OutlinedCard(props) {
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
 
     return (
         <div style={{
@@ -71,7 +70,6 @@ export default function OutlinedCard(props) {
 
                                 <Button
                                     variant="contained"
-                                    variant="contained"
                                     className={classes.btn}>
                                     Proceed to checkout
                             </Button>
@@ -88,7 +86,6 @@ export default function OutlinedCard(props) {
                             }}>
 
                                 <Button
-                                    variant="contained"
                                     variant="contained"
                                     className={classes.btn}>
                                     Proceed to Payment
