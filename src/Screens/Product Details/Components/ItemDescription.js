@@ -26,7 +26,7 @@ const productDescription = props => {
                     <Typography variant="h5">
                         Description:
                     </Typography>
-                    <br/>
+                    <br />
                     <Description overview={prod.overview} />
                 </Grid>
             </Grid>
@@ -37,9 +37,6 @@ const productDescription = props => {
                     prod.bulletPoints.map((specification, index) => {
                         return (
                             <Grid key={index} item lg={3} md={4} sm={6} xs={6}>
-                                {/* <Typography variant="h6" style={{ color: '#000' }} color="textSecondary" component="h5">
-                                    specification
-                            </Typography> */}
                                 <Typography variant="p" color="textSecondary" component="p">
                                     {specification}
                                 </Typography>

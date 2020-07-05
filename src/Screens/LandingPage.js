@@ -16,23 +16,6 @@ import Products from '../Components/ProductCard';
 import Banner from '../Components/Banners';
 import ListProd from '../Components/HorizontalScrollingMenu';
 
-// const prodArr = [
-//     { name: 'Samsung S6', image: s6 },
-//     { name: 'Samsung S10', image: s10 },
-//     { name: 'Samsung A30', image: a30 },
-//     { name: 'Realme 5', image: realme5 },
-//     { name: 'Oppo F7', image: oppof7 },
-//     { name: 'Samsung S6', image: s6 },
-//     { name: 'Realme 5', image: realme5 },
-//     { name: 'Samsung S10', image: s10 },
-//     { name: 'Samsung A30', image: a30 },
-//     { name: 'Oppo F7', image: oppof7 },
-//     { name: 'Samsung S10', image: s10 },
-//     { name: 'Samsung A30', image: a30 },
-//     { name: 'Oppo F7', image: oppof7 },
-
-// ]
-
 class LandingPage extends Component {
 
     state = {

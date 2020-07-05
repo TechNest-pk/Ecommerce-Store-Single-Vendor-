@@ -36,7 +36,7 @@ const serviceInfo = props => {
                                     :
                                     <Typography component="p" variant="p" color="textPrimary">
                                         Sindh, Karachi - Gulshan-e-Iqbal, Block 15
-                                                        </Typography>
+                                </Typography>
                             }
                         </React.Fragment>}
                     />

@@ -69,6 +69,15 @@ class ProductDetails extends Component {
             })
             .catch(err => {
                 //handle error
+                this.setState({
+                    isLoading: false,
+                }, () => {
+                    swal.fire({
+                        icon: 'error',
+                        title: 'Something went wrong',
+                        text: 'Ecommer Store'
+                    });
+                })
                 console.log(err);
             });
     }

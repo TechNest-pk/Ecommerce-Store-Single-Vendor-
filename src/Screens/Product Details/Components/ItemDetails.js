@@ -19,9 +19,8 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import s6 from '../../../Assets/Images/s6.jpg'
 import s10 from '../../../Assets/Images/s10.jpeg'
 
+
 const formatter = new Intl.NumberFormat('en-US', {
-    // style: 'currency',
-    // currency: 'PKR',
     minimumFractionDigits: 0
 })
 
@@ -29,10 +28,6 @@ class ProductDetails extends Component {
 
     state = {
         quantity: 1,
-        prod: {},
-        description: '',
-
-        isLoading: true,
     }
 
     handleAddToCart = () => {
@@ -52,8 +47,8 @@ class ProductDetails extends Component {
                 .then(response => {
                     swal.fire({
                         icon: 'success',
-                        title: 'Ecommerce Store',
-                        text: 'Item added in Cart'
+                        text: 'Ecommerce Store',
+                        title: 'Item added in Cart'
                     })
 
                 })
@@ -62,23 +57,22 @@ class ProductDetails extends Component {
                     swal.fire({
                         icon: 'error',
                         title: 'Something went wrong',
-                        text: 'Please Login first'
+                        text: 'Ecommer Store'
                     });
                     console.log(err);
-                });
+                })
         }
         else {
             swal.fire({
                 icon: 'error',
-                title: 'Ecommerce Store',
-                text: 'Please Login first'
+                title: 'Please Login first',
+                text: 'Ecommerce Store'
             })
                 .then(() => {
                     history.push('/login');
                 })
         }
     }
-
 
     render() {
 

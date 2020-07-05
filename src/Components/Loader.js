@@ -11,7 +11,7 @@ const Loader = props => {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
-            <CircularProgress style={{ color: '#087059', height: 100, width: 100 }} />
+            <CircularProgress style={{ color: '#087059', height: 80, width: 80 }} />
         </div>
     )
 }
